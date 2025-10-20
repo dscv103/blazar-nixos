@@ -30,31 +30,38 @@ jobs:
       - name: Create working branch
         shell: bash
         run: |
+          set -euo pipefail
           branch="ci/nix-autofix"
           git checkout -B "$branch"
 
       - name: Format with nixfmt-rfc-style
         shell: bash
         run: |
-          git ls-files -z '*.nix' > nix_files.z
+          set -euo pipefail
+          # Collect tracked .nix files (safe if none exist)
+          git ls-files -z '*.nix' > nix_files.z || true
+          # If there are no files, xargs -r will do nothing
           xargs -0 -r nix run --extra-experimental-features 'nix-command flakes' \
             nixpkgs#nixfmt-rfc-style -- < nix_files.z
 
       - name: Apply statix fixes (safe)
         shell: bash
         run: |
+          set -euo pipefail
           nix run --extra-experimental-features 'nix-command flakes' \
             nixpkgs#statix -- fix
 
       - name: Remove dead code with deadnix --edit
         shell: bash
         run: |
+          set -euo pipefail
           nix run --extra-experimental-features 'nix-command flakes' \
             nixpkgs#deadnix -- --edit .
 
       - name: Commit changes
         shell: bash
         run: |
+          set -euo pipefail
           git add -A
           if git diff --cached --quiet; then
             echo "No changes to commit."
@@ -75,5 +82,6 @@ jobs:
             - `nix run nixpkgs#nixfmt-rfc-style`
             - `nix run nixpkgs#statix -- fix`
             - `nix run nixpkgs#deadnix -- --edit`
-          labels: [automation, maintenance]
-``
+          labels: |
+            automation
+            maintenance
