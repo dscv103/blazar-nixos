@@ -39,7 +39,7 @@ jobs:
 
       # Install Nix on the GitHub runner (no Lix)
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v14
+        uses: DeterminateSystems/nix-installer-action@v20
       # Optional but recommended: enable binary caches for faster CI
       - name: Enable Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v7

@@ -28,7 +28,7 @@ jobs:
 
       # Install Nix (no Lix)
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v14
+        uses: DeterminateSystems/nix-installer-action@v20
 
       # Optional: enable binary caches for speed
       - name: Enable Nix cache
