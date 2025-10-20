@@ -22,8 +22,8 @@ jobs:
           fetch-depth: 0
 
       # Install Nix on the GitHub runner
-      - name: Install Nix
-        uses: DeterminateSystems/determinate-nix-action@v3.11.3
+      - name: The Determinate Nix Installer
+        uses: DeterminateSystems/nix-installer-action@v20
 
       # Optional: enable a fast binary cache for nixpkgs
       - name: Enable Nix cache
