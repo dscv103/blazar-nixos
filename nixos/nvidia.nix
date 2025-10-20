@@ -1,7 +1,7 @@
 # NVIDIA driver configuration with Wayland support
 # Optimized for NVIDIA GPUs with niri compositor
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # ============================================================================
@@ -57,51 +57,44 @@
   };
 
   # ============================================================================
-  # KERNEL PARAMETERS - CRITICAL for Wayland support
+  # KERNEL PARAMETERS & BOOT SETTINGS
   # ============================================================================
-  
-  boot.kernelParams = [
+
+  boot = {
     # CRITICAL: Enable NVIDIA DRM kernel mode setting (required for Wayland)
-    "nvidia-drm.modeset=1"
-    
-    # Enable framebuffer device (kernel 6.6+)
-    "nvidia-drm.fbdev=1"
-    
-    # Preserve video memory allocations (helps with suspend/resume)
-    # Uncomment if you experience issues with suspend/resume
-    # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
-  ];
+    kernelParams = [
+      "nvidia-drm.modeset=1"
+      "nvidia-drm.fbdev=1"  # Enable framebuffer device (kernel 6.6+)
+      # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  # Uncomment for suspend/resume issues
+    ];
+
+    # Load NVIDIA modules early in boot
+    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
+    # Ensure NVIDIA modules are loaded
+    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  };
 
   # ============================================================================
   # ENVIRONMENT VARIABLES - Required for NVIDIA + Wayland
   # ============================================================================
-  
+
   environment.sessionVariables = {
     # NVIDIA Wayland compatibility
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    
+
     # Wayland-specific fixes
     WLR_NO_HARDWARE_CURSORS = "1";  # Fix cursor rendering issues
-    
+
     # NVIDIA-specific optimizations
     __GL_GSYNC_ALLOWED = "1";       # Enable G-Sync
     __GL_VRR_ALLOWED = "1";         # Enable Variable Refresh Rate
-    
+
     # Additional performance settings (optional)
     # __GL_SHADER_DISK_CACHE = "1";
     # __GL_SHADER_DISK_CACHE_PATH = "/tmp/nvidia-shader-cache";
   };
-
-  # ============================================================================
-  # ADDITIONAL SETTINGS
-  # ============================================================================
-  
-  # Load NVIDIA modules early in boot
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-
-  # Ensure NVIDIA modules are loaded
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 }
 

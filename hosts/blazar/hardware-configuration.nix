@@ -10,7 +10,7 @@
 # - Kernel modules
 # - Hardware-specific settings
 
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, modulesPath, ... }:
 
 {
   imports = [
@@ -20,11 +20,15 @@
   # PLACEHOLDER: Add your actual hardware configuration here
   # This is a minimal placeholder to allow the flake to build
   # You MUST replace this with the output of nixos-generate-config
-  
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+
+  boot = {
+    initrd = {
+      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+  };
 
   # PLACEHOLDER: Configure your actual file systems here
   # Run: nixos-generate-config --show-hardware-config > hosts/blazar/hardware-configuration.nix

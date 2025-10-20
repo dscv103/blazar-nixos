@@ -1,6 +1,6 @@
 # Git configuration
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.git = {

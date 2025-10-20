@@ -2,7 +2,7 @@
 # This file contains only host-specific settings
 # All other configuration is in nixos/ modules (flat import pattern)
 
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   # Hostname

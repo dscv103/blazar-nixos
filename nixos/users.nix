@@ -1,6 +1,6 @@
 # User account configuration
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Define user account

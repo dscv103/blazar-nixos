@@ -1,7 +1,7 @@
 # System-wide packages
 # Essential packages for the desktop environment
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [

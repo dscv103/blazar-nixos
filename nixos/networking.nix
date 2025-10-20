@@ -1,21 +1,23 @@
 # Network configuration
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
-  # Enable NetworkManager for easy network management
-  networking.networkmanager.enable = true;
+  networking = {
+    # Enable NetworkManager for easy network management
+    networkmanager.enable = true;
 
-  # Firewall configuration
-  networking.firewall = {
-    enable = true;
-    # allowedTCPPorts = [ ];
-    # allowedUDPPorts = [ ];
+    # Firewall configuration
+    firewall = {
+      enable = true;
+      # allowedTCPPorts = [ ];
+      # allowedUDPPorts = [ ];
+    };
+
+    # Enable IPv6
+    enableIPv6 = true;
+
+    # Hostname is set in hosts/blazar/configuration.nix
   };
-
-  # Enable IPv6
-  networking.enableIPv6 = true;
-
-  # Hostname is set in hosts/blazar/configuration.nix
 }
 

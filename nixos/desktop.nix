@@ -1,7 +1,7 @@
 # Desktop environment configuration
 # Niri compositor with XDG portals and display manager
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # ============================================================================
@@ -42,37 +42,36 @@
   };
 
   # ============================================================================
-  # DISPLAY MANAGER - GREETD with TUIGREET
+  # DISPLAY MANAGER & ESSENTIAL SERVICES
   # ============================================================================
-  
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
-        user = "greeter";
+
+  services = {
+    # Greetd display manager with tuigreet
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
+          user = "greeter";
+        };
       };
     };
+
+    # Alternative: SDDM (uncomment if preferred)
+    # displayManager.sddm = {
+    #   enable = true;
+    #   wayland.enable = true;
+    # };
+
+    # D-Bus for inter-process communication
+    dbus.enable = true;
+
+    # Enable X server (required for some compatibility)
+    xserver.enable = true;
   };
 
-  # Alternative: SDDM (uncomment if preferred)
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  # };
-
-  # ============================================================================
-  # ESSENTIAL SERVICES
-  # ============================================================================
-  
   # PolicyKit for privilege escalation
   security.polkit.enable = true;
-
-  # D-Bus for inter-process communication
-  services.dbus.enable = true;
-
-  # Enable X server (required for some compatibility)
-  services.xserver.enable = true;
 
   # ============================================================================
   # WAYLAND ENVIRONMENT

@@ -1,6 +1,6 @@
 # Locale, timezone, and console configuration
 
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   # Timezone

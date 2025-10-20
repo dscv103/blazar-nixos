@@ -1,27 +1,29 @@
 # Bootloader configuration
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  # Use systemd-boot EFI bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    # Use systemd-boot EFI bootloader
+    loader = {
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;  # Keep multiple generations for easy rollback
+      };
+      efi.canTouchEfiVariables = true;
+      timeout = 5;  # Bootloader timeout (seconds)
+    };
 
-  # Keep multiple generations for easy rollback
-  boot.loader.systemd-boot.configurationLimit = 10;
+    # Alternative: GRUB bootloader (uncomment if preferred)
+    # loader.grub = {
+    #   enable = true;
+    #   device = "nodev";
+    #   efiSupport = true;
+    #   useOSProber = true;  # Detect other operating systems
+    # };
 
-  # Bootloader timeout (seconds)
-  boot.loader.timeout = 5;
-
-  # Alternative: GRUB bootloader (uncomment if preferred)
-  # boot.loader.grub = {
-  #   enable = true;
-  #   device = "nodev";
-  #   efiSupport = true;
-  #   useOSProber = true;  # Detect other operating systems
-  # };
-
-  # Latest kernel for best hardware support
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+    # Latest kernel for best hardware support
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
 }
 
