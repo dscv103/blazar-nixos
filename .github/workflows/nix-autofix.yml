@@ -29,11 +29,34 @@ jobs:
       - name: Enable Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v13
 
+      - name: Determine default branch
+        id: default-branch
+        shell: bash
+        env:
+          EVENT_DEFAULT_BRANCH: ${{ github.event.repository.default_branch || '' }}
+          EVENT_REF_NAME: ${{ github.ref_name || '' }}
+        run: |
+          set -euo pipefail
+          # github.event.repository.default_branch is not defined for schedule triggers
+          default_branch="${EVENT_DEFAULT_BRANCH:-}"
+          if [ -z "$default_branch" ]; then
+            # Fallback to the currently checked out ref (e.g. refs/heads/main)
+            default_branch="${EVENT_REF_NAME:-}"
+          fi
+          if [ -z "$default_branch" ]; then
+            echo "Unable to determine default branch" >&2
+            exit 1
+          fi
+          echo "value=$default_branch" >>"$GITHUB_OUTPUT"
+
       - name: Create working branch
         shell: bash
+        env:
+          DEFAULT_BRANCH: ${{ steps.default-branch.outputs.value }}
         run: |
           set -euo pipefail
           branch="ci/nix-autofix"
+          git checkout "$DEFAULT_BRANCH"
           git checkout -B "$branch"
 
       - name: Format with nixfmt-rfc-style
@@ -81,7 +104,7 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           branch: ci/nix-autofix
-          base: ${{ github.event.repository.default_branch }}
+          base: ${{ steps.default-branch.outputs.value }}
           title: "chore(nix): autofix via nixfmt/statix/deadnix"
           commit-message: "chore(nix): autofix via nixfmt/statix/deadnix"
           body: |
