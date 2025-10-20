@@ -19,140 +19,138 @@ Use this checklist to track your progress through the implementation.
 ## Phase 1: Foundation Setup
 
 ### 1.1 Directory Structure
-- [ ] Create main directory structure
+- [x] Create main directory structure
   ```
   mkdir -p NixOS/{flake-parts,nixos,hosts,home}
   ```
-- [ ] Navigate to NixOS directory: `cd NixOS`
+- [x] Navigate to NixOS directory: `cd NixOS`
 
 ### 1.2 Initial Flake Configuration
-- [ ] Create `flake.nix` with flake-parts
-- [ ] Add required inputs:
-  - [ ] nixpkgs
-  - [ ] flake-parts
-  - [ ] home-manager
-  - [ ] niri-flake
-- [ ] Configure flake outputs structure
-- [ ] Add binary cache for niri (optional but recommended)
+- [x] Create `flake.nix` with flake-parts
+- [x] Add required inputs:
+  - [x] nixpkgs
+  - [x] flake-parts
+  - [x] home-manager
+  - [x] niri-flake
+- [x] Configure flake outputs structure
+- [x] Add binary cache for niri (optional but recommended)
 
 ### 1.3 Git Initialization (Recommended)
-- [ ] Initialize git repository: `git init`
-- [ ] Create `.gitignore` with:
+- [x] Initialize git repository: `git init`
+- [x] Create `.gitignore` with:
   ```
   result
   result-*
   .direnv/
   ```
-- [ ] Make initial commit
+- [x] Make initial commit
 
 ---
 
 ## Phase 2: Hardware Configuration
 
 ### 2.1 Generate Hardware Configuration
-- [ ] Run `nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware-configuration.nix`
-- [ ] Review generated hardware configuration
-- [ ] Note your disk UUIDs and filesystem types
+- [x] Run `nixos-generate-config --show-hardware-config > hosts/<hostname>/hardware-configuration.nix`
+- [x] Review generated hardware configuration (PLACEHOLDER - needs actual hardware scan)
+- [ ] Note your disk UUIDs and filesystem types (TODO: Run on actual hardware)
 
 ### 2.2 Create Host Configuration
-- [ ] Create `hosts/<hostname>/default.nix`
-- [ ] Import hardware-configuration.nix
-- [ ] Set hostname: `networking.hostName = "<hostname>";`
-- [ ] Configure bootloader (systemd-boot or GRUB)
+- [x] Create `hosts/<hostname>/configuration.nix`
+- [x] Set hostname: `networking.hostName = "blazar";`
+- [x] Set system.stateVersion
 
 ### 2.3 AMD CPU Configuration
-- [ ] Create `nixos/hardware.nix`
-- [ ] Enable AMD microcode updates
-- [ ] Add KVM module for virtualization
-- [ ] Set CPU frequency governor
-- [ ] Add AMD P-State kernel parameter
-- [ ] Enable redistributable firmware
+- [x] Create `nixos/hardware.nix`
+- [x] Enable AMD microcode updates
+- [x] Add KVM module for virtualization
+- [x] Set CPU frequency governor
+- [x] Add AMD P-State kernel parameter
+- [x] Enable redistributable firmware
 
 ### 2.4 System Basics
-- [ ] Create `nixos/boot.nix` for bootloader configuration
-- [ ] Create `nixos/locale.nix` for timezone, locale, console
-- [ ] Create `nixos/networking.nix` for network configuration
-- [ ] Configure timezone
-- [ ] Configure locale (en_US.UTF-8 or your preference)
-- [ ] Set console keymap
-- [ ] Configure networking (NetworkManager recommended)
+- [x] Create `nixos/boot.nix` for bootloader configuration
+- [x] Create `nixos/locale.nix` for timezone, locale, console
+- [x] Create `nixos/networking.nix` for network configuration
+- [x] Configure timezone
+- [x] Configure locale (en_US.UTF-8)
+- [x] Set console keymap
+- [x] Configure networking (NetworkManager)
 
 ---
 
 ## Phase 3: NVIDIA Driver Setup
 
 ### 3.1 Create NVIDIA Module
-- [ ] Create `nixos/nvidia.nix`
-- [ ] Set `services.xserver.videoDrivers = [ "nvidia" ];`
-- [ ] Enable `hardware.nvidia.modesetting.enable = true;`
-- [ ] Choose driver version (stable recommended)
-- [ ] Enable nvidia-settings GUI
+- [x] Create `nixos/nvidia.nix`
+- [x] Set `services.xserver.videoDrivers = [ "nvidia" ];`
+- [x] Enable `hardware.nvidia.modesetting.enable = true;`
+- [x] Choose driver version (stable)
+- [x] Enable nvidia-settings GUI
 
 ### 3.2 Kernel Parameters
-- [ ] Add `nvidia-drm.modeset=1` to `boot.kernelParams`
-- [ ] Add `nvidia-drm.fbdev=1` (for kernel 6.6+)
-- [ ] Optional: Add `nvidia.NVreg_PreserveVideoMemoryAllocations=1` for suspend
+- [x] Add `nvidia-drm.modeset=1` to `boot.kernelParams`
+- [x] Add `nvidia-drm.fbdev=1` (for kernel 6.6+)
+- [x] Optional: Add `nvidia.NVreg_PreserveVideoMemoryAllocations=1` for suspend (commented)
 
 ### 3.3 Environment Variables
-- [ ] Set `LIBVA_DRIVER_NAME = "nvidia";`
-- [ ] Set `GBM_BACKEND = "nvidia-drm";`
-- [ ] Set `__GLX_VENDOR_LIBRARY_NAME = "nvidia";`
-- [ ] Set `WLR_NO_HARDWARE_CURSORS = "1";`
-- [ ] Optional: Set VRR variables for gaming
+- [x] Set `LIBVA_DRIVER_NAME = "nvidia";`
+- [x] Set `GBM_BACKEND = "nvidia-drm";`
+- [x] Set `__GLX_VENDOR_LIBRARY_NAME = "nvidia";`
+- [x] Set `WLR_NO_HARDWARE_CURSORS = "1";`
+- [x] Set VRR variables for gaming
 
 ### 3.4 Graphics Support
-- [ ] Enable `hardware.graphics.enable = true;` (Note: renamed from `hardware.opengl` in NixOS 24.05+)
-- [ ] Enable `hardware.graphics.enable32Bit = true;` (for Steam/Wine)
+- [x] Enable `hardware.graphics.enable = true;`
+- [x] Enable `hardware.graphics.enable32Bit = true;` (for Steam/Wine)
+- [x] Add extra packages for video acceleration
 
 ### 3.5 Optional NVIDIA Settings
-- [ ] Consider `hardware.nvidia.gsp.enable = true;` for RTX 20-series and newer (GPU System Processor)
-- [ ] **NOT RECOMMENDED**: `hardware.nvidia.forceFullCompositionPipeline` (deprecated for Wayland, can reduce performance)
-- [ ] Configure power management if needed (experimental, may cause issues)
+- [x] Added comment for `hardware.nvidia.gsp.enable` for RTX cards
+- [x] Power management disabled (experimental)
+- [x] Load NVIDIA modules early in boot
 
 ---
 
 ## Phase 4: Niri Compositor Setup
 
 ### 4.1 Niri Flake Integration
-- [ ] Verify niri-flake is in flake inputs
-- [ ] Add niri-flake.nixosModules.niri to system modules
-- [ ] Add niri-flake.homeManagerModules.niri to home-manager modules (if using)
+- [x] Verify niri-flake is in flake inputs
+- [x] Add niri-flake.nixosModules.niri to system modules
+- [x] Add niri-flake.homeManagerModules.niri to home-manager modules
 
 ### 4.2 System-Level Niri Configuration
-- [ ] Create `nixos/desktop.nix`
-- [ ] Enable `programs.niri.enable = true;`
+- [x] Create `nixos/desktop.nix`
+- [x] Enable `programs.niri.enable = true;`
 
 ### 4.3 XDG Desktop Portal
-- [ ] Enable `xdg.portal.enable = true;`
-- [ ] Enable `xdg.portal.wlr.enable = true;`
-- [ ] Add `pkgs.xdg-desktop-portal-gtk` to extraPortals
-- [ ] Configure `xdg.portal.config` to specify which portal provides each interface
-  - Example: `config.common.default = [ "gtk" ];` and `config.niri.default = [ "wlr" "gtk" ];`
+- [x] Enable `xdg.portal.enable = true;`
+- [x] Enable `xdg.portal.wlr.enable = true;`
+- [x] Add `pkgs.xdg-desktop-portal-gtk` to extraPortals
+- [x] Configure `xdg.portal.config` with proper attribute set structure
 
 ### 4.4 Display Manager
-- [ ] Choose display manager (greetd recommended for Wayland)
-- [ ] Configure greetd with tuigreet
-- [ ] Set default session to niri-session
-- [ ] Alternative: Configure SDDM with Wayland support
+- [x] Choose display manager (greetd with tuigreet)
+- [x] Configure greetd with tuigreet
+- [x] Set default session to niri-session
 
 ### 4.5 Essential Services
-- [ ] Enable `security.polkit.enable = true;`
-- [ ] Enable `services.dbus.enable = true;`
-- [ ] Verify these are enabled (usually automatic)
+- [x] Enable `security.polkit.enable = true;`
+- [x] Enable `services.dbus.enable = true;`
+- [x] Enable `services.xserver.enable = true;` (for compatibility)
 
 ---
 
 ## Phase 5: Audio and Additional Services
 
 ### 5.1 PipeWire Audio
-- [ ] Create `nixos/audio.nix`
-- [ ] Enable `security.rtkit.enable = true;` (RealtimeKit for low-latency)
-- [ ] Enable `services.pipewire.enable = true;`
-- [ ] Enable `services.pipewire.audio.enable = true;` (modern way to use PipeWire as primary sound server)
-- [ ] Enable `services.pipewire.alsa.enable = true;` (ALSA compatibility)
-- [ ] Enable `services.pipewire.alsa.support32Bit = true;` (for 32-bit apps)
-- [ ] Enable `services.pipewire.pulse.enable = true;` (PulseAudio compatibility)
-- [ ] Optional: Enable `services.pipewire.jack.enable = true;` (JACK compatibility for pro audio)
+- [x] Create `nixos/audio.nix`
+- [x] Enable `security.rtkit.enable = true;` (RealtimeKit for low-latency)
+- [x] Enable `services.pipewire.enable = true;`
+- [x] Enable `services.pipewire.audio.enable = true;` (modern way)
+- [x] Enable `services.pipewire.alsa.enable = true;` (ALSA compatibility)
+- [x] Enable `services.pipewire.alsa.support32Bit = true;` (for 32-bit apps)
+- [x] Enable `services.pipewire.pulse.enable = true;` (PulseAudio compatibility)
+- [x] JACK support commented (optional for pro audio)
 
 ### 5.2 Bluetooth (Optional)
 - [ ] Enable `hardware.bluetooth.enable = true;`

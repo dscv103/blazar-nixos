@@ -1,0 +1,35 @@
+# PipeWire audio configuration
+# Modern audio server with PulseAudio and JACK compatibility
+
+{ config, lib, pkgs, ... }:
+
+{
+  # Enable RealtimeKit for low-latency audio
+  security.rtkit.enable = true;
+
+  # PipeWire configuration
+  services.pipewire = {
+    enable = true;
+    
+    # Use PipeWire as the primary sound server (modern method)
+    audio.enable = true;
+    
+    # ALSA support
+    alsa = {
+      enable = true;
+      support32Bit = true;  # Required for 32-bit applications
+    };
+    
+    # PulseAudio compatibility layer
+    pulse.enable = true;
+    
+    # JACK compatibility (optional, for professional audio)
+    # Uncomment if you need JACK support
+    # jack.enable = true;
+  };
+
+  # Ensure sound is enabled
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;  # Disabled in favor of PipeWire
+}
+
