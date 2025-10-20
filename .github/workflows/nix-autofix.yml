@@ -72,7 +72,7 @@ jobs:
           git commit -m "chore(nix): autofix via nixfmt/statix/deadnix"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v7
         with:
           branch: ci/nix-autofix
           title: "chore(nix): autofix via nixfmt/statix/deadnix"
