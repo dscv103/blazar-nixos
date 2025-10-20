@@ -118,11 +118,6 @@
                       ./home/dscv/packages.nix  # User packages
                     ];
                   };
-
-                  # Niri home-manager module
-                  sharedModules = [
-                    niri-flake.homeManagerModules.niri
-                  ];
                 };
               }
               

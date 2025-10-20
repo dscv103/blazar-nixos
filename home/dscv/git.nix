@@ -5,25 +5,28 @@
 {
   programs.git = {
     enable = true;
-    
-    # User information
-    userName = "dscv";
-    userEmail = "dvitrano@me.com";
-    
-    # Git aliases
-    aliases = {
-      st = "status";
-      co = "checkout";
-      br = "branch";
-      ci = "commit";
-      unstage = "reset HEAD --";
-      last = "log -1 HEAD";
-      visual = "log --oneline --graph --decorate --all";
-      amend = "commit --amend";
-    };
-    
-    # Extra configuration
-    extraConfig = {
+
+    # Git configuration (using modern settings structure)
+    settings = {
+      # User information
+      user = {
+        name = "dscv";
+        email = "dvitrano@me.com";
+      };
+
+      # Git aliases
+      alias = {
+        st = "status";
+        co = "checkout";
+        br = "branch";
+        ci = "commit";
+        unstage = "reset HEAD --";
+        last = "log -1 HEAD";
+        visual = "log --oneline --graph --decorate --all";
+        amend = "commit --amend";
+      };
+
+      # Additional configuration
       init = {
         defaultBranch = "main";
       };

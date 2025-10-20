@@ -28,8 +28,7 @@
     # jack.enable = true;
   };
 
-  # Ensure sound is enabled
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;  # Disabled in favor of PipeWire
+  # Disable PulseAudio in favor of PipeWire
+  services.pulseaudio.enable = false;
 }
 

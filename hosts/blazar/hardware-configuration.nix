@@ -26,18 +26,22 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  # IMPORTANT: Configure your actual file systems here
-  # Example (replace with your actual UUIDs and mount points):
-  # fileSystems."/" = {
-  #   device = "/dev/disk/by-uuid/YOUR-ROOT-UUID";
-  #   fsType = "ext4";
-  # };
-  #
-  # fileSystems."/boot" = {
-  #   device = "/dev/disk/by-uuid/YOUR-BOOT-UUID";
-  #   fsType = "vfat";
-  # };
-  #
+  # PLACEHOLDER: Configure your actual file systems here
+  # Run: nixos-generate-config --show-hardware-config > hosts/blazar/hardware-configuration.nix
+  # to generate the actual configuration
+
+  # Minimal placeholder to allow flake to build
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/boot";
+    fsType = "vfat";
+  };
+
+  # Example swap configuration (uncomment and adjust as needed):
   # swapDevices = [
   #   { device = "/dev/disk/by-uuid/YOUR-SWAP-UUID"; }
   # ];
