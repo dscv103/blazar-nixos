@@ -1,0 +1,51 @@
+name: Nix CI (nixfmt-rfc-style + statix + deadnix)
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Fast, reproducible Nix install + cache
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Enable Nix cache (optional but recommended)
+        uses: DeterminateSystems/magic-nix-cache-action@v7
+
+      # If you use flakes (recommended), this ensures inputs are in place
+      - name: Nix flake show (optional)
+        run: nix flake show || true
+
+      # Use the same toolchain locally and in CI:
+      #   nix develop .#ci-tools -c <command>
+      - name: Check formatting with nixfmt-rfc-style
+        run: |
+          shopt -s globstar nullglob
+          files=()
+          while IFS= read -r -d '' f; do files+=("$f"); done < <(git ls-files -z '*.nix')
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No .nix files found."
+            exit 0
+          fi
+          nix develop .#ci-tools -c nixfmt --check "${files[@]}"
+
+      - name: Lint with statix
+        run: |
+          nix develop .#ci-tools -c statix check .
+
+      - name: Dead code check with deadnix
+        run: |
+          # --fail makes deadnix return non-zero if issues found
+          nix develop .#ci-tools -c deadnix --fail .
