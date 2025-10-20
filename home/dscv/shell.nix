@@ -8,7 +8,7 @@
   # ========================================================================
   programs.bash = {
     enable = true;
-    
+
     # Shell aliases
     shellAliases = {
       # Nix shortcuts
@@ -17,26 +17,26 @@
       nrt = "sudo nixos-rebuild test --flake .#blazar";
       nfc = "nix flake check";
       nfu = "nix flake update";
-      
+
       # Common aliases
       ll = "ls -lah";
       la = "ls -A";
       l = "ls -CF";
       ".." = "cd ..";
       "..." = "cd ../..";
-      
+
       # Git shortcuts
       gs = "git status";
       ga = "git add";
       gc = "git commit";
       gp = "git push";
       gl = "git log --oneline --graph --decorate";
-      
+
       # System utilities
       update = "sudo nixos-rebuild switch --flake .#blazar";
       cleanup = "sudo nix-collect-garbage -d";
     };
-    
+
     # Bash initialization
     initExtra = ''
       # Custom prompt (simple)

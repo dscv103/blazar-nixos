@@ -8,14 +8,14 @@
   nix.settings = {
     # Allow unfree packages
     allowed-unfree = true;
-    
+
     # Build settings
     max-jobs = "auto";
-    cores = 0;  # Use all available cores
-    
+    cores = 0; # Use all available cores
+
     # Trusted users (can use --option and override settings)
     trusted-users = [ "root" "@wheel" ];
-    
+
     # Keep build dependencies for debugging
     keep-outputs = true;
     keep-derivations = true;

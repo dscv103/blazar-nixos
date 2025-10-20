@@ -10,16 +10,16 @@
       # Default development shell
       default = pkgs.mkShell {
         name = "nixos-config-dev";
-        
+
         buildInputs = with pkgs; [
           # Nix tools
           nixpkgs-fmt
-          nil  # Nix language server
-          
+          nil # Nix language server
+
           # Useful utilities
           git
         ];
-        
+
         shellHook = ''
           echo "NixOS configuration development environment"
           echo "Run 'nixos-rebuild' commands to build and test the configuration"

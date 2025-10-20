@@ -61,12 +61,12 @@
         nixosConfigurations = {
           blazar = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
-            
+
             # Special arguments passed to all modules
-            specialArgs = { 
+            specialArgs = {
               inherit inputs;
             };
-            
+
             modules = [
               # ================================================================
               # FLAT IMPORT PATTERN - All modules imported here directly
@@ -82,16 +82,16 @@
               # ----------------------------------------------------------------
               # NixOS System Modules (all imported directly, no nested imports)
               # ----------------------------------------------------------------
-              ./nixos/hardware.nix      # AMD Ryzen 7 5800X configuration
-              ./nixos/nvidia.nix        # NVIDIA drivers + Wayland
-              ./nixos/desktop.nix       # Niri + XDG portals + display manager
-              ./nixos/boot.nix          # Bootloader configuration
-              ./nixos/networking.nix    # Network configuration
-              ./nixos/locale.nix        # Locale, timezone, console
-              ./nixos/users.nix         # User accounts
-              ./nixos/audio.nix         # PipeWire audio
-              ./nixos/packages.nix      # System-wide packages
-              ./nixos/nix-settings.nix  # Nix daemon, binary caches
+              ./nixos/hardware.nix # AMD Ryzen 7 5800X configuration
+              ./nixos/nvidia.nix # NVIDIA drivers + Wayland
+              ./nixos/desktop.nix # Niri + XDG portals + display manager
+              ./nixos/boot.nix # Bootloader configuration
+              ./nixos/networking.nix # Network configuration
+              ./nixos/locale.nix # Locale, timezone, console
+              ./nixos/users.nix # User accounts
+              ./nixos/audio.nix # PipeWire audio
+              ./nixos/packages.nix # System-wide packages
+              ./nixos/nix-settings.nix # Nix daemon, binary caches
 
               # ----------------------------------------------------------------
               # External Modules
@@ -111,16 +111,16 @@
                   # User configurations with flat imports
                   users.dscv = {
                     imports = [
-                      ./home/dscv/home.nix      # Base home-manager config
-                      ./home/dscv/niri.nix      # Niri user configuration
-                      ./home/dscv/shell.nix     # Shell configuration
-                      ./home/dscv/git.nix       # Git configuration
-                      ./home/dscv/packages.nix  # User packages
+                      ./home/dscv/home.nix # Base home-manager config
+                      ./home/dscv/niri.nix # Niri user configuration
+                      ./home/dscv/shell.nix # Shell configuration
+                      ./home/dscv/git.nix # Git configuration
+                      ./home/dscv/packages.nix # User packages
                     ];
                   };
                 };
               }
-              
+
               # ----------------------------------------------------------------
               # Binary cache configuration
               # ----------------------------------------------------------------
@@ -128,7 +128,7 @@
                 nix.settings = {
                   # Enable flakes and nix-command
                   experimental-features = [ "nix-command" "flakes" ];
-                  
+
                   # Niri binary cache (speeds up builds)
                   substituters = [
                     "https://cache.nixos.org"
@@ -138,11 +138,11 @@
                     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
                     "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
                   ];
-                  
+
                   # Auto-optimize store
                   auto-optimise-store = true;
                 };
-                
+
                 # Garbage collection
                 nix.gc = {
                   automatic = true;

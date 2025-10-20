@@ -7,7 +7,7 @@
   # ============================================================================
   # NVIDIA DRIVER CONFIGURATION
   # ============================================================================
-  
+
   # Set video drivers
   services.xserver.videoDrivers = [ "nvidia" ];
 
@@ -43,11 +43,11 @@
   # ============================================================================
   # GRAPHICS SUPPORT (renamed from hardware.opengl in NixOS 24.05+)
   # ============================================================================
-  
+
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;  # Required for 32-bit applications (Steam, Wine, etc.)
-    
+    enable32Bit = true; # Required for 32-bit applications (Steam, Wine, etc.)
+
     # Additional graphics packages for video acceleration
     extraPackages = with pkgs; [
       vaapiVdpau
@@ -64,7 +64,7 @@
     # CRITICAL: Enable NVIDIA DRM kernel mode setting (required for Wayland)
     kernelParams = [
       "nvidia-drm.modeset=1"
-      "nvidia-drm.fbdev=1"  # Enable framebuffer device (kernel 6.6+)
+      "nvidia-drm.fbdev=1" # Enable framebuffer device (kernel 6.6+)
       # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  # Uncomment for suspend/resume issues
     ];
 
@@ -86,11 +86,11 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 
     # Wayland-specific fixes
-    WLR_NO_HARDWARE_CURSORS = "1";  # Fix cursor rendering issues
+    WLR_NO_HARDWARE_CURSORS = "1"; # Fix cursor rendering issues
 
     # NVIDIA-specific optimizations
-    __GL_GSYNC_ALLOWED = "1";       # Enable G-Sync
-    __GL_VRR_ALLOWED = "1";         # Enable Variable Refresh Rate
+    __GL_GSYNC_ALLOWED = "1"; # Enable G-Sync
+    __GL_VRR_ALLOWED = "1"; # Enable Variable Refresh Rate
 
     # Additional performance settings (optional)
     # __GL_SHADER_DISK_CACHE = "1";

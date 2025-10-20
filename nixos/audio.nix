@@ -10,19 +10,19 @@
   # PipeWire configuration
   services.pipewire = {
     enable = true;
-    
+
     # Use PipeWire as the primary sound server (modern method)
     audio.enable = true;
-    
+
     # ALSA support
     alsa = {
       enable = true;
-      support32Bit = true;  # Required for 32-bit applications
+      support32Bit = true; # Required for 32-bit applications
     };
-    
+
     # PulseAudio compatibility layer
     pulse.enable = true;
-    
+
     # JACK compatibility (optional, for professional audio)
     # Uncomment if you need JACK support
     # jack.enable = true;

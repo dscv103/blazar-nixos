@@ -8,10 +8,10 @@
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 10;  # Keep multiple generations for easy rollback
+        configurationLimit = 10; # Keep multiple generations for easy rollback
       };
       efi.canTouchEfiVariables = true;
-      timeout = 5;  # Bootloader timeout (seconds)
+      timeout = 5; # Bootloader timeout (seconds)
     };
 
     # Alternative: GRUB bootloader (uncomment if preferred)
