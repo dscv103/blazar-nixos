@@ -11,7 +11,8 @@ on:
     paths:
       - "**.lock"
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   check-flake:
