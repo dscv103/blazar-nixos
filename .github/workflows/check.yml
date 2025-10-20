@@ -14,7 +14,8 @@ on:
       - ".github/actions/**/*"
 
 # Minimal permissions; workflows run on GitHub-hosted runners only.
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   check-flake:
