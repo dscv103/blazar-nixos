@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Use the explicitly passed ref if provided, otherwise the current ref name
           ref: ${{ inputs.ref || github.ref_name }}
@@ -39,10 +39,10 @@ jobs:
 
       # Install Nix on the GitHub runner (no Lix)
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v14
+        uses: DeterminateSystems/determinate-nix-action@v3.11.3
       # Optional but recommended: enable binary caches for faster CI
       - name: Enable Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+        uses: DeterminateSystems/magic-nix-cache-action@v13
 
       # Run flake checks with experimental features enabled explicitly,
       # and disallow IFD for reproducible evaluation.
