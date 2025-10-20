@@ -56,8 +56,7 @@ jobs:
         run: |
           set -euo pipefail
           branch="ci/nix-autofix"
-          git checkout "$DEFAULT_BRANCH"
-          git checkout -B "$branch"
+          git checkout -B "$branch" "$DEFAULT_BRANCH"
 
       - name: Format with nixfmt-rfc-style
         shell: bash
