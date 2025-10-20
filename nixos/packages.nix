@@ -88,7 +88,10 @@
     # DEVELOPMENT TOOLS
     # ========================================================================
     nixpkgs-fmt # Nix code formatter
+    nixfmt-rfc-style # RFC 166 nixfmt formatter variant
     nil # Nix language server
+    deadnix # Detect dead Nix code
+    statix # Lints and suggestions for Nix code
   ];
 }
 
