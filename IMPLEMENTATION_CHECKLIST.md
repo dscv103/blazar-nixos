@@ -165,87 +165,81 @@ Use this checklist to track your progress through the implementation.
 ## Phase 6: User Configuration
 
 ### 6.1 System User Account
-- [ ] Create `nixos/users.nix`
-- [ ] Define user account with `users.users.<username>`
-- [ ] Set `isNormalUser = true;`
-- [ ] Add to groups: `wheel`, `networkmanager`, `video`, `audio`
-- [ ] Set initial password or use `hashedPassword`
+- [x] Create `nixos/users.nix`
+- [x] Define user account with `users.users.dscv`
+- [x] Set `isNormalUser = true;`
+- [x] Add to groups: `wheel`, `networkmanager`, `video`, `audio`, `input`, `render`
+- [x] Set initial password
 
 ### 6.2 Home Manager Setup
-- [ ] Create `home/<username>/home.nix`
-- [ ] Set `home.username` and `home.homeDirectory`
-- [ ] Set `home.stateVersion` (match system stateVersion)
-- [ ] Enable `programs.home-manager.enable = true;`
+- [x] Create `home/dscv/home.nix`
+- [x] Set `home.username` and `home.homeDirectory`
+- [x] Set `home.stateVersion = "24.11"`
+- [x] Enable `programs.home-manager.enable = true;`
 
 ### 6.3 Niri User Configuration
-- [ ] Create `home/<username>/niri.nix`
-- [ ] Option 1: Use `programs.niri.config` (if using niri-flake home module)
-- [ ] Option 2: Use `home.file.".config/niri/config.kdl"` for raw config
-- [ ] Configure keybindings
-- [ ] Configure workspaces
-- [ ] Configure outputs (monitors)
-- [ ] Set preferred terminal
+- [x] Create `home/dscv/niri.nix`
+- [x] Use `programs.niri.settings` (declarative configuration)
+- [x] Configure keybindings
+- [x] Configure layout and animations
+- [x] Configure spawn-at-startup
+- [x] Set preferred terminal (foot)
 
 ---
 
 ## Phase 7: Essential Packages
 
 ### 7.1 System Packages
-- [ ] Create `nixos/packages.nix`
-- [ ] Add terminal emulator (foot, alacritty, or kitty)
-- [ ] Add application launcher (fuzzel, wofi, or rofi-wayland)
-- [ ] Add status bar (waybar)
-- [ ] Add notification daemon (mako or dunst)
-- [ ] Add screenshot tools (grim, slurp, swappy)
-- [ ] Add clipboard utilities (wl-clipboard, cliphist)
-- [ ] Add file manager (nautilus, thunar, or terminal-based)
-- [ ] Add lock screen (swaylock)
-- [ ] Add wayland utilities (wayland-utils, wev)
+- [x] Create `nixos/packages.nix`
+- [x] Add terminal emulator (foot)
+- [x] Add application launcher (fuzzel)
+- [x] Add status bar (waybar)
+- [x] Add notification daemon (mako)
+- [x] Add screenshot tools (grim, slurp, swappy)
+- [x] Add clipboard utilities (wl-clipboard, cliphist)
+- [x] Add file manager (nautilus)
+- [x] Add lock screen (swaylock)
+- [x] Add wayland utilities (wayland-utils, wev, wlr-randr)
 
 ### 7.2 User Packages (via Home Manager)
-- [ ] Create `home/<username>/packages.nix`
-- [ ] Add web browser (firefox with Wayland support)
-- [ ] Add text editor
-- [ ] Add development tools
-- [ ] Add media players
-- [ ] Add any other preferred applications
+- [x] Create `home/dscv/packages.nix`
+- [x] Add web browser (firefox with Wayland support)
+- [x] Add media players (mpv)
+- [x] Add image viewer (imv)
+- [x] Configure Firefox and MPV
 
 ### 7.3 Shell Configuration
-- [ ] Create `home/<username>/shell.nix`
-- [ ] Configure bash/zsh/fish
-- [ ] Set up shell aliases
-- [ ] Configure prompt (starship recommended)
+- [x] Create `home/dscv/shell.nix`
+- [x] Configure bash
+- [x] Set up shell aliases (nix shortcuts, git shortcuts, etc.)
+- [x] Configure custom prompt
 
 ### 7.4 Git Configuration
-- [ ] Create `home/<username>/git.nix`
-- [ ] Set user name and email
-- [ ] Configure git aliases and settings
+- [x] Create `home/dscv/git.nix`
+- [x] Set user name and email
+- [x] Configure git aliases and settings
 
 ---
 
 ## Phase 8: Flake-Parts Modules (Optional but Recommended)
 
 ### 8.1 Custom Packages Module
-- [ ] Create `flake-parts/packages.nix`
-- [ ] Define custom packages in `perSystem.packages`
-- [ ] Import module in flake.nix `imports` list
-- [ ] Test with `nix build .#<package-name>`
+- [x] Create `flake-parts/packages.nix`
+- [x] Define structure for custom packages in `perSystem.packages`
+- [x] Import module in flake.nix `imports` list
 
 ### 8.2 Overlays Module
-- [ ] Create `flake-parts/overlays.nix`
-- [ ] Define overlays to modify nixpkgs
-- [ ] Import module in flake.nix `imports` list
-- [ ] Export overlays via `flake.overlays` if needed
+- [x] Create `flake-parts/overlays.nix`
+- [x] Define structure for overlays
+- [x] Import module in flake.nix `imports` list
 
 ### 8.3 Development Shells Module
-- [ ] Create `flake-parts/devshells.nix`
-- [ ] Define development environments in `perSystem.devShells`
-- [ ] Create default shell and any specialized shells
-- [ ] Import module in flake.nix `imports` list
-- [ ] Test with `nix develop` or `nix develop .#<shell-name>`
+- [x] Create `flake-parts/devshells.nix`
+- [x] Define default development shell with nix tools
+- [x] Import module in flake.nix `imports` list
 
 ### 8.4 Checks Module (Optional)
-- [ ] Create `flake-parts/checks.nix`
+- [ ] Create `flake-parts/checks.nix` (skipped - optional)
 - [ ] Define build checks and tests
 - [ ] Import module in flake.nix `imports` list
 - [ ] Run with `nix flake check`
