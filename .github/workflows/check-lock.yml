@@ -32,7 +32,7 @@ jobs:
 
       # Optional: enable binary caches for speed
       - name: Enable Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+        uses: DeterminateSystems/magic-nix-cache-action@v13
 
       # Run locker from the GitHub repo via nix run.
       # We explicitly enable flakes and nix-command features.

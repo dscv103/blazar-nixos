@@ -31,7 +31,7 @@ jobs:
 
       # Optional: enable binary caches for speed
       - name: Enable Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+        uses: DeterminateSystems/magic-nix-cache-action@v13
 
       # Update flake.lock via Determinate Systems action
       - name: Update Lockfile

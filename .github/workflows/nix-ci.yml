@@ -23,7 +23,7 @@ jobs:
 
       # Optional: enable a fast binary cache for nixpkgs
       - name: Enable Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v7
+        uses: DeterminateSystems/magic-nix-cache-action@v13
 
       - name: Collect .nix files
         id: files
