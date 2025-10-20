@@ -1,0 +1,77 @@
+name: Nix Autofix
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1"  # Mondays at 06:00 UTC
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+  pull_requests: write
+
+jobs:
+  autofix:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # Let the action create a branch from the default branch
+          fetch-depth: 0
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Enable Nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v7
+
+      - name: Create working branch
+        run: |
+          branch="ci/nix-autofix"
+          git checkout -B "$branch"
+
+      - name: Run nixfmt (rfc style)
+        run: |
+          shopt -s globstar nullglob
+          files=()
+          while IFS= read -r -d '' f; do files+=("$f"); done < <(git ls-files -z '*.nix')
+          if [ ${#files[@]} -gt 0 ]; then
+            nix develop .#ci-tools -c nixfmt "${files[@]}"
+          fi
+
+      - name: statix fix (safe auto-fixes)
+        run: |
+          nix develop .#ci-tools -c statix fix
+
+      - name: deadnix --edit (remove dead bindings)
+        run: |
+          # --edit applies edits in-place
+          nix develop .#ci-tools -c deadnix --edit .
+
+      - name: Commit changes
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(nix): autofix via nixfmt/statix/deadnix"
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ci/nix-autofix
+          title: "chore(nix): autofix via nixfmt/statix/deadnix"
+          commit-message: "chore(nix): autofix via nixfmt/statix/deadnix"
+          body: |
+            This PR was automatically created by the **Nix Autofix** workflow.
+            It applies:
+            - `nixfmt` (RFC style)
+            - `statix fix`
+            - `deadnix --edit`
+          labels: [automation, maintenance]
