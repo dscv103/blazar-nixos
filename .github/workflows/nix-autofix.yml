@@ -9,7 +9,7 @@ on:
 
 permissions:
   contents: write
-  pull_requests: write
+  pull-requests: write
 
 jobs:
   autofix:
@@ -19,7 +19,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          # Let the action create a branch from the default branch
           fetch-depth: 0
 
       - name: Install Nix
@@ -29,29 +28,32 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v7
 
       - name: Create working branch
+        shell: bash
         run: |
           branch="ci/nix-autofix"
           git checkout -B "$branch"
 
-      - name: Run nixfmt (rfc style)
+      - name: Format with nixfmt-rfc-style
+        shell: bash
         run: |
-          shopt -s globstar nullglob
-          files=()
-          while IFS= read -r -d '' f; do files+=("$f"); done < <(git ls-files -z '*.nix')
-          if [ ${#files[@]} -gt 0 ]; then
-            nix develop .#ci-tools -c nixfmt "${files[@]}"
-          fi
+          git ls-files -z '*.nix' > nix_files.z
+          xargs -0 -r nix run --extra-experimental-features 'nix-command flakes' \
+            nixpkgs#nixfmt-rfc-style -- < nix_files.z
 
-      - name: statix fix (safe auto-fixes)
+      - name: Apply statix fixes (safe)
+        shell: bash
         run: |
-          nix develop .#ci-tools -c statix fix
+          nix run --extra-experimental-features 'nix-command flakes' \
+            nixpkgs#statix -- fix
 
-      - name: deadnix --edit (remove dead bindings)
+      - name: Remove dead code with deadnix --edit
+        shell: bash
         run: |
-          # --edit applies edits in-place
-          nix develop .#ci-tools -c deadnix --edit .
+          nix run --extra-experimental-features 'nix-command flakes' \
+            nixpkgs#deadnix -- --edit .
 
       - name: Commit changes
+        shell: bash
         run: |
           git add -A
           if git diff --cached --quiet; then
@@ -69,9 +71,9 @@ jobs:
           title: "chore(nix): autofix via nixfmt/statix/deadnix"
           commit-message: "chore(nix): autofix via nixfmt/statix/deadnix"
           body: |
-            This PR was automatically created by the **Nix Autofix** workflow.
-            It applies:
-            - `nixfmt` (RFC style)
-            - `statix fix`
-            - `deadnix --edit`
+            Automated PR applying:
+            - `nix run nixpkgs#nixfmt-rfc-style`
+            - `nix run nixpkgs#statix -- fix`
+            - `nix run nixpkgs#deadnix -- --edit`
           labels: [automation, maintenance]
+``
