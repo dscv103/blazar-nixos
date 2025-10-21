@@ -19,12 +19,12 @@
     initrd = {
       # Available kernel modules for initrd
       availableKernelModules = [
-        "xhci_pci"      # USB 3.0 controller
-        "ahci"          # SATA controller
-        "nvme"          # NVMe SSD support
-        "usbhid"        # USB HID devices
-        "usb_storage"   # USB storage devices
-        "sd_mod"        # SCSI disk support
+        "xhci_pci" # USB 3.0 controller
+        "ahci" # SATA controller
+        "nvme" # NVMe SSD support
+        "usbhid" # USB HID devices
+        "usb_storage" # USB storage devices
+        "sd_mod" # SCSI disk support
       ];
       kernelModules = [ ];
     };

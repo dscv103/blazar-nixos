@@ -6,15 +6,15 @@
 {
   programs.zed-editor = {
     enable = true;
-    
+
     # Use the default Zed package
     package = pkgs.zed-editor;
-    
+
     # Install Dracula theme extension
     extensions = [
       "dracula-theme"
     ];
-    
+
     # Zed user settings
     userSettings = {
       # ====================================================================
@@ -25,7 +25,7 @@
         light = "One Light";
         dark = "Dracula";
       };
-      
+
       # ====================================================================
       # FONT - MAPLE MONO
       # ====================================================================
@@ -35,55 +35,55 @@
         # Enable ligatures
         calt = true;
       };
-      
+
       # UI font
       ui_font_family = "Maple Mono";
       ui_font_size = 14;
-      
+
       # Terminal font
       terminal = {
         font_family = "Maple Mono";
         font_size = 14;
         line_height = "comfortable";
       };
-      
+
       # ====================================================================
       # EDITOR SETTINGS
       # ====================================================================
       # Cursor
       cursor_blink = true;
-      
+
       # Scrolling
       scroll_sensitivity = 1.0;
-      
+
       # Line numbers
       relative_line_numbers = false;
-      
+
       # Indentation
       tab_size = 2;
       hard_tabs = false;
-      
+
       # Wrapping
       soft_wrap = "none";
-      
+
       # Whitespace
       show_whitespaces = "selection";
-      
+
       # Rulers
       vertical_scroll_margin = 3;
-      
+
       # Auto-save
       autosave = "on_focus_change";
-      
+
       # Format on save
       format_on_save = "on";
-      
+
       # Trim trailing whitespace
       remove_trailing_whitespace_on_save = true;
-      
+
       # Ensure newline at end of file
       ensure_final_newline_on_save = true;
-      
+
       # ====================================================================
       # UI SETTINGS
       # ====================================================================
@@ -92,13 +92,13 @@
         breadcrumbs = true;
         quick_actions = true;
       };
-      
+
       # Tabs
       tabs = {
         close_position = "right";
         git_status = true;
       };
-      
+
       # Project panel
       project_panel = {
         button = true;
@@ -106,20 +106,20 @@
         dock = "left";
         git_status = true;
       };
-      
+
       # Outline panel
       outline_panel = {
         button = true;
         default_width = 240;
         dock = "right";
       };
-      
+
       # Collaboration panel
       collaboration_panel = {
         button = true;
         dock = "left";
       };
-      
+
       # ====================================================================
       # GIT SETTINGS
       # ====================================================================
@@ -129,7 +129,7 @@
           enabled = true;
         };
       };
-      
+
       # ====================================================================
       # LANGUAGE SETTINGS
       # ====================================================================
@@ -140,7 +140,7 @@
           format_on_save = {
             external = {
               command = "ruff";
-              arguments = ["format" "-"];
+              arguments = [ "format" "-" ];
             };
           };
           code_actions_on_format = {
@@ -148,7 +148,7 @@
             source.fixAll = true;
           };
         };
-        
+
         # Nix
         Nix = {
           tab_size = 2;
@@ -158,30 +158,30 @@
             };
           };
         };
-        
+
         # JavaScript/TypeScript
         JavaScript = {
           tab_size = 2;
           format_on_save = "on";
         };
-        
+
         TypeScript = {
           tab_size = 2;
           format_on_save = "on";
         };
-        
+
         # JSON
         JSON = {
           tab_size = 2;
           format_on_save = "on";
         };
-        
+
         # Markdown
         Markdown = {
           soft_wrap = "editor_width";
         };
       };
-      
+
       # ====================================================================
       # LSP SETTINGS
       # ====================================================================
@@ -192,7 +192,7 @@
             path = "${pkgs.nil}/bin/nil";
           };
         };
-        
+
         # Python LSP (Pyright/Pylance alternative)
         # Zed has built-in Python support
         python-language-server = {
@@ -201,7 +201,7 @@
           };
         };
       };
-      
+
       # ====================================================================
       # TELEMETRY (DISABLE)
       # ====================================================================
@@ -209,7 +209,7 @@
         diagnostics = false;
         metrics = false;
       };
-      
+
       # ====================================================================
       # PERFORMANCE
       # ====================================================================
@@ -231,13 +231,13 @@
         "**/result"
         "**/result-*"
       ];
-      
+
       # ====================================================================
       # VIM MODE (OPTIONAL)
       # ====================================================================
       # Uncomment to enable vim mode
       # vim_mode = true;
-      
+
       # ====================================================================
       # COLLABORATION
       # ====================================================================
@@ -246,7 +246,7 @@
         copilot = false; # Set to true if you have GitHub Copilot
       };
     };
-    
+
     # ====================================================================
     # KEYBINDINGS (OPTIONAL)
     # ====================================================================
@@ -261,7 +261,7 @@
       # }
     ];
   };
-  
+
   # ============================================================================
   # FONTS
   # ============================================================================

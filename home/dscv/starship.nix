@@ -1,7 +1,7 @@
 # Starship prompt configuration
 # A minimal, blazing-fast, and infinitely customizable prompt for any shell
 
-{ ... }:
+_:
 
 {
   programs.starship = {

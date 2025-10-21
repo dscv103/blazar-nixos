@@ -1,7 +1,7 @@
 # HyprPanel configuration
 # A highly customizable panel for Wayland compositors
 
-{ ... }:
+_:
 
 {
   programs.hyprpanel = {

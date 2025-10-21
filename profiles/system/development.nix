@@ -15,41 +15,41 @@ in
     # ========================================================================
     # DEVELOPMENT PACKAGES
     # ========================================================================
-    
+
     environment.systemPackages = with pkgs; [
       # Container tools
       docker-compose
       lazydocker # Terminal UI for Docker
       dive # Explore Docker image layers
-      
+
       # Database clients
       postgresql # PostgreSQL client
       redis # Redis client
       sqlite # SQLite client
-      
+
       # API testing
       postman
       insomnia
-      
+
       # Network tools
       wireshark
       tcpdump
       nmap
-      
+
       # System monitoring
       sysstat
       iotop
       nethogs
-      
+
       # Build tools
       gnumake
       cmake
       pkg-config
-      
+
       # Version control
       git-lfs # Git Large File Storage
       gh # GitHub CLI
-      
+
       # Documentation
       man-pages
       man-pages-posix
@@ -58,30 +58,30 @@ in
     # ========================================================================
     # DOCKER CONFIGURATION
     # ========================================================================
-    
+
     virtualisation.docker = {
       enable = true;
-      
+
       # Enable Docker on boot
       enableOnBoot = true;
-      
+
       # Use NVIDIA runtime for GPU access in containers
       enableNvidia = config.hardware.nvidia.modesetting.enable or false;
-      
+
       # Auto-prune to save disk space
       autoPrune = {
         enable = true;
         dates = "weekly";
       };
-      
+
       # Docker daemon configuration
       daemon.settings = {
         # Use systemd cgroup driver
         exec-opts = [ "native.cgroupdriver=systemd" ];
-        
+
         # Enable experimental features
         experimental = true;
-        
+
         # Set default logging driver
         log-driver = "json-file";
         log-opts = {
@@ -97,7 +97,7 @@ in
     # ========================================================================
     # PODMAN CONFIGURATION (Alternative to Docker)
     # ========================================================================
-    
+
     # Uncomment to use Podman instead of/alongside Docker
     # virtualisation.podman = {
     #   enable = true;
@@ -108,7 +108,7 @@ in
     # ========================================================================
     # DATABASE SERVICES (Optional - enable as needed)
     # ========================================================================
-    
+
     # PostgreSQL
     # services.postgresql = {
     #   enable = true;
@@ -136,19 +136,19 @@ in
     # ========================================================================
     # DEVELOPMENT SERVICES
     # ========================================================================
-    
+
     # Enable dbus for development tools
     services.dbus.enable = true;
 
     # ========================================================================
     # KERNEL PARAMETERS FOR DEVELOPMENT
     # ========================================================================
-    
+
     boot.kernel.sysctl = {
       # Increase file watchers for development tools (IDEs, file watchers)
       "fs.inotify.max_user_watches" = 524288;
       "fs.inotify.max_user_instances" = 512;
-      
+
       # Increase file descriptors
       "fs.file-max" = 2097152;
     };
@@ -156,7 +156,7 @@ in
     # ========================================================================
     # NETWORKING FOR DEVELOPMENT
     # ========================================================================
-    
+
     networking.firewall = {
       # Allow common development ports
       allowedTCPPorts = [
@@ -172,7 +172,7 @@ in
     # ========================================================================
     # DOCUMENTATION
     # ========================================================================
-    
+
     # Enable man pages
     documentation = {
       enable = true;

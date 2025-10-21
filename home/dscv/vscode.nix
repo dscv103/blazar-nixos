@@ -6,13 +6,13 @@
 {
   programs.vscode = {
     enable = true;
-    
+
     # Use the default VSCode package
     package = pkgs.vscode;
-    
+
     # Allow manual extension installation/updates
     mutableExtensionsDir = true;
-    
+
     # VSCode extensions
     # Note: Using profiles instead of direct extensions for better organization
     profiles.default = {
@@ -21,31 +21,31 @@
         # THEME - DRACULA
         # ====================================================================
         dracula-theme.theme-dracula
-        
+
         # ====================================================================
         # NIX SUPPORT
         # ====================================================================
         bbenoist.nix # Nix language support
         jnoortheen.nix-ide # Nix IDE features
-        
+
         # ====================================================================
         # PYTHON SUPPORT
         # ====================================================================
         ms-python.python # Python language support
         ms-python.vscode-pylance # Python language server
-        
+
         # ====================================================================
         # GENERAL DEVELOPMENT
         # ====================================================================
         vscodevim.vim # Vim keybindings (optional - remove if you don't use vim)
         eamodio.gitlens # Git supercharged
-        
+
         # ====================================================================
         # UTILITIES
         # ====================================================================
         editorconfig.editorconfig # EditorConfig support
       ];
-      
+
       # VSCode user settings
       userSettings = {
         # ==================================================================
@@ -54,7 +54,7 @@
         "workbench.colorTheme" = "Dracula";
         "workbench.iconTheme" = "vs-minimal"; # Use built-in minimal icons
         "workbench.preferredDarkColorTheme" = "Dracula";
-        
+
         # ==================================================================
         # FONT - MAPLE MONO
         # ==================================================================
@@ -64,7 +64,7 @@
         "editor.lineHeight" = 1.6;
         "terminal.integrated.fontFamily" = "'Maple Mono'";
         "terminal.integrated.fontSize" = 14;
-        
+
         # ==================================================================
         # EDITOR SETTINGS
         # ==================================================================
@@ -81,21 +81,21 @@
         "editor.minimap.enabled" = true;
         "editor.bracketPairColorization.enabled" = true;
         "editor.guides.bracketPairs" = "active";
-        
+
         # ==================================================================
         # WORKBENCH SETTINGS
         # ==================================================================
         "workbench.startupEditor" = "none";
         "workbench.tree.indent" = 16;
         "workbench.list.smoothScrolling" = true;
-        
+
         # ==================================================================
         # TERMINAL SETTINGS
         # ==================================================================
         "terminal.integrated.smoothScrolling" = true;
         "terminal.integrated.cursorBlinking" = true;
         "terminal.integrated.cursorStyle" = "line";
-        
+
         # ==================================================================
         # FILES SETTINGS
         # ==================================================================
@@ -120,7 +120,7 @@
           "**/result" = true;
           "**/result-*" = true;
         };
-        
+
         # ==================================================================
         # PYTHON SETTINGS
         # ==================================================================
@@ -136,7 +136,7 @@
           };
           "editor.tabSize" = 4;
         };
-        
+
         # ==================================================================
         # NIX SETTINGS
         # ==================================================================
@@ -148,7 +148,7 @@
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nil";
         "nix.formatterPath" = "nixpkgs-fmt";
-        
+
         # ==================================================================
         # JAVASCRIPT/TYPESCRIPT SETTINGS
         # ==================================================================
@@ -168,7 +168,7 @@
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
           "editor.tabSize" = 2;
         };
-        
+
         # ==================================================================
         # MARKDOWN SETTINGS
         # ==================================================================
@@ -180,14 +180,14 @@
             "other" = "off";
           };
         };
-        
+
         # ==================================================================
         # GIT SETTINGS
         # ==================================================================
         "git.autofetch" = true;
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
-        
+
         # ==================================================================
         # TELEMETRY (DISABLE)
         # ==================================================================
@@ -196,7 +196,7 @@
       };
     };
   };
-  
+
   # ============================================================================
   # FONTS
   # ============================================================================

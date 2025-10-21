@@ -7,12 +7,12 @@
 let
   # Load profile configuration from host
   profileConfig = import ../hosts/blazar/profiles.nix;
-  
+
   # Get current username from config
-  username = config.home.username;
-  
+  inherit (config.home) username;
+
   # Get user-specific profile config
-  userProfiles = profileConfig.users.${username} or {};
+  userProfiles = profileConfig.users.${username} or { };
 in
 {
   # ============================================================================

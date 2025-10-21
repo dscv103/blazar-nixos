@@ -15,11 +15,11 @@ in
     # ========================================================================
     # PRINTING PACKAGES
     # ========================================================================
-    
+
     environment.systemPackages = with pkgs; [
       # Printer management
       system-config-printer # CUPS printer configuration tool
-      
+
       # Scanner support
       simple-scan # Simple scanning utility
       # xsane # Advanced scanning
@@ -28,10 +28,10 @@ in
     # ========================================================================
     # CUPS PRINTING SERVICE
     # ========================================================================
-    
+
     services.printing = {
       enable = true;
-      
+
       # Printer drivers
       drivers = with pkgs; [
         gutenprint # High-quality printer drivers
@@ -40,10 +40,10 @@ in
         # brlaser # Brother laser printer drivers
         # cnijfilter2 # Canon printer drivers
       ];
-      
+
       # Enable web interface
       webInterface = true;
-      
+
       # Allow remote printing
       # listenAddresses = [ "*:631" ];
       # allowFrom = [ "all" ];
@@ -56,7 +56,7 @@ in
       enable = true;
       nssmdns4 = true;
       openFirewall = true;
-      
+
       # Publish printer information
       publish = {
         enable = true;
@@ -67,10 +67,10 @@ in
     # ========================================================================
     # SCANNER SUPPORT
     # ========================================================================
-    
+
     hardware.sane = {
       enable = true;
-      
+
       # Scanner drivers
       extraBackends = with pkgs; [
         hplipWithPlugin # HP scanner support

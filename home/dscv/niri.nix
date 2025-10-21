@@ -156,12 +156,11 @@ _:
     }
   '';
 
-  # Create screenshots directory
-  home.file."Pictures/Screenshots/.keep".text = "";
-
-  # Create wallpapers directory with README
-  home.file."Pictures/Wallpapers/.keep".text = "";
-  home.file."Pictures/Wallpapers/README.md".text = ''
+  # Create screenshots and wallpapers directories
+  home.file = {
+    "Pictures/Screenshots/.keep".text = "";
+    "Pictures/Wallpapers/.keep".text = "";
+    "Pictures/Wallpapers/README.md".text = ''
     # Wallpapers Directory
 
     Place your wallpaper images in this directory.
@@ -217,7 +216,8 @@ _:
     - https://unsplash.com (free high-quality photos)
     - https://wallhaven.cc (community wallpapers)
     - https://www.pexels.com (free stock photos)
-  '';
+    '';
+  };
 
   # Hyprpaper configuration
   xdg.configFile."hypr/hyprpaper.conf".text = ''

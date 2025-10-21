@@ -1,10 +1,9 @@
 # SDDM display manager configuration
 # SDDM with astronaut theme for Wayland
 
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, ...
 }:
 
 let
