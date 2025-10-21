@@ -26,6 +26,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Disko for declarative disk partitioning
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Systems helper for flake-parts
     systems.url = "github:nix-systems/default-linux";
   };
@@ -33,7 +39,7 @@
   # ============================================================================
   # OUTPUTS - What this flake produces
   # ============================================================================
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, niri-flake, ... }:
+  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, niri-flake, disko, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       # Systems this flake supports
       systems = [ "x86_64-linux" ];
@@ -84,6 +90,7 @@
               # ----------------------------------------------------------------
               ./hosts/blazar/configuration.nix
               ./hosts/blazar/hardware-configuration.nix
+              ./hosts/blazar/disko.nix # Disko disk configuration
 
               # ----------------------------------------------------------------
               # NixOS System Modules (all imported directly, no nested imports)
@@ -108,6 +115,7 @@
               # ----------------------------------------------------------------
               # External Modules
               # ----------------------------------------------------------------
+              disko.nixosModules.disko # Disko declarative disk partitioning
               niri-flake.nixosModules.niri
               home-manager.nixosModules.home-manager
 

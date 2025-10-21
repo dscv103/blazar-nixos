@@ -1,14 +1,11 @@
 # Hardware configuration for blazar
-# This file should be generated with: nixos-generate-config --show-hardware-config
-# 
-# PLACEHOLDER - Replace this with your actual hardware configuration
-# Run: nixos-generate-config --show-hardware-config > hosts/blazar/hardware-configuration.nix
 #
-# This file will contain:
-# - File systems configuration (/, /boot, swap, etc.)
-# - Boot loader settings
-# - Kernel modules
-# - Hardware-specific settings
+# NOTE: Filesystem configuration is managed by disko (hosts/blazar/disko.nix)
+# This file contains only hardware detection and kernel modules
+#
+# If you need to regenerate this file after hardware changes:
+# Run: nixos-generate-config --show-hardware-config
+# Then remove the fileSystems and swapDevices sections (managed by disko)
 
 { config, lib, modulesPath, ... }:
 
@@ -17,39 +14,34 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  # PLACEHOLDER: Add your actual hardware configuration here
-  # This is a minimal placeholder to allow the flake to build
-  # You MUST replace this with the output of nixos-generate-config
-
+  # Kernel modules for hardware detection
   boot = {
     initrd = {
-      availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      # Available kernel modules for initrd
+      availableKernelModules = [
+        "xhci_pci"      # USB 3.0 controller
+        "ahci"          # SATA controller
+        "nvme"          # NVMe SSD support
+        "usbhid"        # USB HID devices
+        "usb_storage"   # USB storage devices
+        "sd_mod"        # SCSI disk support
+      ];
       kernelModules = [ ];
     };
-    kernelModules = [ "kvm-amd" ];
+
+    # Kernel modules to load
+    kernelModules = [ "kvm-amd" ]; # AMD virtualization support
     extraModulePackages = [ ];
   };
 
-  # PLACEHOLDER: Configure your actual file systems here
-  # Run: nixos-generate-config --show-hardware-config > hosts/blazar/hardware-configuration.nix
-  # to generate the actual configuration
+  # ============================================================================
+  # FILESYSTEM CONFIGURATION
+  # ============================================================================
+  # Filesystems are managed by disko (hosts/blazar/disko.nix)
+  # Do NOT add fileSystems or swapDevices here - they will conflict with disko
+  # ============================================================================
 
-  # Minimal placeholder to allow flake to build
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/nixos";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
-  };
-
-  # Example swap configuration (uncomment and adjust as needed):
-  # swapDevices = [
-  #   { device = "/dev/disk/by-uuid/YOUR-SWAP-UUID"; }
-  # ];
-
+  # Platform and CPU microcode
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
