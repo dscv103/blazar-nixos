@@ -96,8 +96,7 @@
               # ----------------------------------------------------------------
               # NixOS System Modules (all imported directly, no nested imports)
               # ----------------------------------------------------------------
-              ./nixos/hardware.nix # AMD Ryzen 7 5800X configuration
-              ./nixos/nvidia.nix # NVIDIA drivers + Wayland
+              ./nixos/hardware # Hardware-specific configs (CPU, GPU)
               ./nixos/desktop.nix # Niri + XDG portals
               ./nixos/sddm.nix # SDDM display manager with astronaut theme
               ./nixos/boot.nix # Bootloader configuration
