@@ -73,7 +73,7 @@ _:
 
     spawn-at-startup "waybar"
     spawn-at-startup "mako"
-    spawn-at-startup "swaybg" "-i" "~/Pictures/Wallpapers/wallpaper.jpg" "-m" "fill"
+    spawn-at-startup "hyprpaper"
 
     environment {
         // XCURSOR_THEME "Adwaita"
@@ -167,37 +167,77 @@ _:
 
     Place your wallpaper images in this directory.
 
+    ## Supported Formats
+
+    Hyprpaper supports:
+    - PNG
+    - JPEG/JPG
+    - WebP (including animated WebP)
+    - JPEG XL (JXL)
+
     ## Usage
 
-    The default wallpaper is set to `wallpaper.jpg` in the Niri configuration.
+    The default wallpaper is configured in `~/.config/hypr/hyprpaper.conf`.
 
-    To change the wallpaper:
+    ### Setting a Wallpaper
+
     1. Add your wallpaper image to this directory
-    2. Either:
-       - Rename it to `wallpaper.jpg` (or create a symlink)
-       - Or edit `~/.config/niri/config.kdl` and update the swaybg spawn command
+    2. Edit `~/.config/hypr/hyprpaper.conf`:
+       ```
+       preload = ~/Pictures/Wallpapers/your-image.webp
+       wallpaper = ,~/Pictures/Wallpapers/your-image.webp
+       ```
+    3. Reload hyprpaper: `killall hyprpaper && hyprpaper &`
 
-    ## Swaybg Options
+    ### Using Multiple Wallpapers (Multi-Monitor)
 
-    The current configuration uses:
-    - `-i ~/Pictures/Wallpapers/wallpaper.jpg` - Image path
-    - `-m fill` - Scaling mode (fill the screen)
-
-    Other scaling modes:
-    - `stretch` - Stretch to fill (may distort)
-    - `fit` - Fit to screen (may have borders)
-    - `center` - Center without scaling
-    - `tile` - Tile the image
-
-    ## Changing Wallpaper
-
-    To change wallpaper without restarting Niri:
-    ```bash
-    killall swaybg
-    swaybg -i ~/Pictures/Wallpapers/your-image.jpg -m fill &
+    ```
+    preload = ~/Pictures/Wallpapers/monitor1.webp
+    preload = ~/Pictures/Wallpapers/monitor2.webp
+    wallpaper = DP-1,~/Pictures/Wallpapers/monitor1.webp
+    wallpaper = HDMI-A-1,~/Pictures/Wallpapers/monitor2.webp
     ```
 
-    Or create a script to cycle through wallpapers!
+    Use `niri msg outputs` to see your monitor names.
+
+    ### Dynamic Wallpaper Changes
+
+    Use hyprctl to change wallpapers on the fly:
+    ```bash
+    hyprctl hyprpaper preload ~/Pictures/Wallpapers/new-image.webp
+    hyprctl hyprpaper wallpaper ",~/Pictures/Wallpapers/new-image.webp"
+    ```
+
+    ### Configuration Options
+
+    - `splash = false` - Disable the hyprpaper splash text
+    - `ipc = on` - Enable IPC for dynamic control (default: on)
+
+    ## Example Wallpaper Sources
+
+    - https://unsplash.com (free high-quality photos)
+    - https://wallhaven.cc (community wallpapers)
+    - https://www.pexels.com (free stock photos)
+  '';
+
+  # Hyprpaper configuration
+  xdg.configFile."hypr/hyprpaper.conf".text = ''
+    # Hyprpaper configuration
+    # See https://wiki.hypr.land/Hypr-Ecosystem/hyprpaper/
+
+    # Preload wallpapers (loads them into memory)
+    preload = ~/Pictures/Wallpapers/wallpaper.webp
+
+    # Set wallpaper for all monitors
+    # Format: wallpaper = monitor,path
+    # Use "," for all monitors or specify monitor name (e.g., "DP-1")
+    wallpaper = ,~/Pictures/Wallpapers/wallpaper.webp
+
+    # Disable splash text
+    splash = false
+
+    # Enable IPC for dynamic wallpaper changes
+    ipc = on
   '';
 }
 

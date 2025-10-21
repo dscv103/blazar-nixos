@@ -60,7 +60,7 @@
     # ========================================================================
     # WAYLAND UTILITIES
     # ========================================================================
-    swaybg # Wallpaper utility for Wayland compositors
+    hyprpaper # Wallpaper utility for Wayland (supports PNG, JPEG, WebP, JXL)
   ];
 
   # ========================================================================
