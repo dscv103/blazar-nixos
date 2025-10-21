@@ -44,27 +44,29 @@ nix develop .#nixos
 Includes everything you need for Python and Node.js development:
 
 #### Python 3.13 Ecosystem
-- **Python 3.13.6** - Latest Python version
-- **uv** (0.8.6) - Extremely fast Python package installer and resolver
-- **hatch** (1.14.1) - Modern Python project manager
-- **ruff** (0.12.8) - Fast linter, formatter, and import sorter (all-in-one)
-- **pyright** (1.1.403) - Type checker for Python
-- **pytest** - Testing framework with coverage support
+- **Python 3.13.7** - Latest Python version
+- **uv** (0.8.19) - Extremely fast Python package installer and resolver
+- **hatch** (1.14.2) - Modern Python project manager
+- **ruff** (0.14.0) - Fast linter, formatter, and import sorter (all-in-one)
+- **pyrefly** (0.34.0) - Fast type checker and IDE for Python
+- **pytest** (8.4.1) - Testing framework with coverage support
 - **bandit** (1.8.6) - Security-oriented static analyzer
-- **coverage** (7.10.2) - Code coverage measurement
+- **coverage** (7.10.6) - Code coverage measurement
 
 #### Node.js Ecosystem
-- **Node.js 24.7.0** - Latest Node.js version
-- **pnpm 10.15.0** - Fast, disk space efficient package manager
-- **bun 1.2.21** - Incredibly fast JavaScript runtime and package manager
+- **Node.js 24.10.0** - Latest Node.js version
+- **pnpm 10.18.3** - Fast, disk space efficient package manager
+- **bun 1.3.0** - Incredibly fast JavaScript runtime and package manager
 
 #### Formatting & Linting
-- **treefmt** (2.3.1) - Universal code formatter (configured in `treefmt.toml`)
+- **treefmt** (2.4.0) - Universal code formatter (configured in `treefmt.toml`)
 
-#### Utilities
+#### Version Control & Utilities
+- **git** - Version control
+- **sapling** (0.2.20240718) - Scalable, user-friendly source control system (Meta's SCM)
+- **graphite-cli** (1.7.1) - CLI for creating stacked git changes (gt command)
 - **direnv** - Automatic environment switching
 - **nix-direnv** - Fast direnv integration for Nix
-- **git** - Version control
 
 ### NixOS Shell
 
@@ -136,17 +138,22 @@ ruff check .
 ruff check --select I --fix .
 ```
 
-### Type Checking with Pyright
+### Type Checking with Pyrefly
+
+Pyrefly is a fast type checker and IDE for Python, designed to be faster than Pyright:
 
 ```bash
 # Check types in current directory
-pyright
+pyrefly
 
 # Check specific file
-pyright src/main.py
+pyrefly src/main.py
 
 # Watch mode
-pyright --watch
+pyrefly --watch
+
+# Show type information
+pyrefly --hover src/main.py:10:5
 ```
 
 ### Testing with Pytest
@@ -208,6 +215,74 @@ bun test
 
 # Run file directly
 bun run index.ts
+```
+
+## 🔀 Version Control Tools
+
+### Git
+
+Standard git is available for version control.
+
+### Sapling (sl)
+
+Sapling is Meta's scalable, user-friendly source control system:
+
+```bash
+# Initialize a sapling repo
+sl init
+
+# Clone a repository
+sl clone <url>
+
+# Status
+sl status
+
+# Commit changes
+sl commit -m "message"
+
+# View commit history
+sl log
+
+# Amend the current commit
+sl amend
+
+# Create a new branch
+sl goto -c new-branch
+
+# Sync with remote
+sl pull
+sl push
+```
+
+### Graphite (gt)
+
+Graphite CLI makes creating stacked git changes fast and intuitive:
+
+```bash
+# Initialize graphite in a git repo
+gt init
+
+# Create a new branch stacked on current
+gt branch create feature-name
+
+# Create and track a branch
+gt branch create -a feature-name
+
+# View your stack
+gt log
+
+# Submit stack for review
+gt stack submit
+
+# Sync with remote
+gt repo sync
+
+# Restack branches
+gt stack restack
+
+# Navigate between branches
+gt up    # Move to parent branch
+gt down  # Move to child branch
 ```
 
 ## 🎨 Code Formatting with Treefmt
@@ -327,9 +402,11 @@ my-fullstack-project/
 2. **Use UV for Python** - It's significantly faster than pip/poetry
 3. **Run treefmt before commits** - Keep code consistently formatted
 4. **Use ruff for everything** - One tool for linting, formatting, and import sorting
-5. **Type check with pyright** - Catch errors before runtime
+5. **Type check with pyrefly** - Fast type checking for Python
 6. **Test with pytest** - Write tests and measure coverage
 7. **Scan with bandit** - Find security issues early
+8. **Use graphite for stacked changes** - Better workflow for stacked PRs
+9. **Try sapling** - Modern alternative to git with better UX
 
 ## 🔍 Troubleshooting
 
@@ -367,10 +444,17 @@ bun install
 
 ## 📚 Additional Resources
 
+### Python Tools
 - [UV Documentation](https://github.com/astral-sh/uv)
 - [Hatch Documentation](https://hatch.pypa.io/)
 - [Ruff Documentation](https://docs.astral.sh/ruff/)
-- [Pyright Documentation](https://github.com/microsoft/pyright)
+- [Pyrefly Documentation](https://github.com/RobertCraigie/pyrefly)
+
+### Version Control
+- [Sapling Documentation](https://sapling-scm.com/)
+- [Graphite Documentation](https://graphite.dev/docs)
+
+### Development Tools
 - [Direnv Documentation](https://direnv.net/)
 - [Treefmt Documentation](https://github.com/numtide/treefmt)
 
