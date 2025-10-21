@@ -113,6 +113,7 @@
                     imports = [
                       ./home/dscv/home.nix # Base home-manager config
                       ./home/dscv/theme.nix # Dracula theme configuration
+                      ./home/dscv/hyprpanel.nix # HyprPanel configuration
                       ./home/dscv/niri.nix # Niri user configuration
                       ./home/dscv/shell.nix # Shell configuration
                       ./home/dscv/git.nix # Git configuration

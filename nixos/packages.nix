@@ -20,14 +20,10 @@
     # rofi-wayland # Rofi for Wayland
 
     # ========================================================================
-    # STATUS BAR
+    # STATUS BAR & NOTIFICATIONS
     # ========================================================================
-    waybar # Highly customizable status bar
-
-    # ========================================================================
-    # NOTIFICATIONS
-    # ========================================================================
-    mako # Lightweight notification daemon
+    # HyprPanel is configured via home-manager (see home/dscv/hyprpanel.nix)
+    # HyprPanel provides both status bar and notification daemon functionality
     libnotify # Send notifications (notify-send command)
 
     # ========================================================================

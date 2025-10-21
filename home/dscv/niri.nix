@@ -71,8 +71,7 @@ _:
         slowdown 1.0
     }
 
-    spawn-at-startup "waybar"
-    spawn-at-startup "mako"
+    spawn-at-startup "hyprpanel"
     spawn-at-startup "hyprpaper"
 
     environment {
