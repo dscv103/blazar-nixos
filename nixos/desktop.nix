@@ -42,27 +42,11 @@
   };
 
   # ============================================================================
-  # DISPLAY MANAGER & ESSENTIAL SERVICES
+  # ESSENTIAL SERVICES
   # ============================================================================
+  # Note: Display manager (SDDM) is configured in nixos/sddm.nix
 
   services = {
-    # Greetd display manager with tuigreet
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
-          user = "greeter";
-        };
-      };
-    };
-
-    # Alternative: SDDM (uncomment if preferred)
-    # displayManager.sddm = {
-    #   enable = true;
-    #   wayland.enable = true;
-    # };
-
     # D-Bus for inter-process communication
     dbus.enable = true;
 
