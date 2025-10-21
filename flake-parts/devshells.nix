@@ -17,11 +17,11 @@
           # ====================================================================
           # PYTHON 3.13 ECOSYSTEM
           # ====================================================================
-          python313 # Python 3.13.6
+          python313 # Python 3.13.7
           uv # Extremely fast Python package installer and resolver
           hatch # Modern, extensible Python project manager
           ruff # Extremely fast Python linter and code formatter
-          pyright # Type checker for Python (pyrefly alternative)
+          pyrefly # Fast type checker and IDE for Python
           bandit # Security oriented static analyser for Python
 
           # Python testing and coverage
@@ -48,9 +48,11 @@
           nil # Nix language server
 
           # ====================================================================
-          # UTILITIES
+          # VERSION CONTROL & UTILITIES
           # ====================================================================
           git
+          sapling # Scalable, user-friendly source control system (Meta's SCM)
+          graphite-cli # CLI for creating stacked git changes (gt command)
           direnv # Automatic environment switching
           nix-direnv # Fast direnv integration for Nix
         ];
@@ -65,7 +67,7 @@
           echo "   • uv:        $(uv --version)"
           echo "   • hatch:     $(hatch --version)"
           echo "   • ruff:      $(ruff --version)"
-          echo "   • pyright:   $(pyright --version)"
+          echo "   • pyrefly:   $(pyrefly --version)"
           echo "   • pytest:    $(pytest --version)"
           echo "   • bandit:    $(bandit --version)"
           echo ""
@@ -77,6 +79,11 @@
           echo "🔧 Formatting & Linting:"
           echo "   • treefmt:   $(treefmt --version)"
           echo "   • ruff:      Linter, formatter, and import sorter"
+          echo ""
+          echo "🔀 Version Control:"
+          echo "   • git:       $(git --version | cut -d' ' -f3)"
+          echo "   • sapling:   $(sl --version 2>/dev/null | head -n1 || echo 'available')"
+          echo "   • graphite:  $(gt --version 2>/dev/null || echo 'available')"
           echo ""
           echo "💡 Quick Start:"
           echo "   • Python:    uv init / hatch new <project>"

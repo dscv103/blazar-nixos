@@ -49,6 +49,12 @@
 
       # Per-system outputs
       perSystem = { config, self', inputs', pkgs, system, ... }: {
+        # Configure nixpkgs for this system
+        _module.args.pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true; # Allow unfree packages (e.g., graphite-cli)
+        };
+
         # Formatter for nix files (run with: nix fmt)
         formatter = pkgs.nixpkgs-fmt;
       };
