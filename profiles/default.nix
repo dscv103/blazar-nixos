@@ -14,14 +14,17 @@ in
   # ============================================================================
   # Note: Each profile module defines its own options with lib.mkEnableOption
   # This ensures proper type validation and documentation
+  # Subdirectories have default.nix files that import all modules in that category
 
   imports = [
-    # System profiles
-    ./system/development.nix
-    ./system/multimedia.nix
+    # System profiles (development, multimedia, etc.)
+    ./system
 
-    # Feature profiles
-    ./features/printing.nix
+    # User profiles (productivity, etc.)
+    ./user
+
+    # Feature profiles (printing, virtualization, etc.)
+    ./features
   ];
 
   # ============================================================================
