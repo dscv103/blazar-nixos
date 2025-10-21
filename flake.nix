@@ -77,7 +77,7 @@
             # Special arguments passed to all modules
             specialArgs = {
               inherit inputs;
-              hostName = "blazar";  # Hostname for this configuration
+              hostName = "blazar"; # Hostname for this configuration
             };
 
             modules = [
@@ -129,7 +129,7 @@
                   useUserPackages = true;
                   extraSpecialArgs = {
                     inherit inputs;
-                    hostName = "blazar";  # Pass hostname to home-manager modules
+                    hostName = "blazar"; # Pass hostname to home-manager modules
                   };
 
                   # User configurations with flat imports

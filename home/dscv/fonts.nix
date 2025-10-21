@@ -11,7 +11,7 @@
   # FONT PACKAGES
   # ================================================================================
   home.packages = with pkgs; [
-    maple-mono.NF  # Maple Mono NerdFont - includes all icons and ligatures
+    maple-mono.NF # Maple Mono NerdFont - includes all icons and ligatures
   ];
 
   # ================================================================================

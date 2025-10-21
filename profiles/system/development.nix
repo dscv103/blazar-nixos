@@ -134,8 +134,7 @@ in
     # ============================================================================
     # DEVELOPMENT SERVICES
     # ============================================================================
-    # Enable dbus for development tools
-    services.dbus.enable = true;
+    # Note: D-Bus is enabled globally in nixos/desktop.nix
 
     # ============================================================================
     # KERNEL PARAMETERS FOR DEVELOPMENT

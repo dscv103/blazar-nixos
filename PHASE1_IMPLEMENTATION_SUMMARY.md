@@ -1,13 +1,20 @@
 # Phase 1 Implementation Summary
 
-**Date:** 2025-10-21  
+**Date:** 2025-10-21
 **Status:** ✅ COMPLETE - Awaiting User Testing
+**Latest Updates:**
+- Fixed duplicate option declarations (commit d5d5f34)
+- Fixed hostName parameter for home-manager (commit 7b775de)
 
 ---
 
 ## Overview
 
 All 7 high-priority "Quick Wins" optimizations from Phase 1 have been successfully implemented. The changes are ready for testing and deployment.
+
+**Note:** Two issues were identified during testing and have been fixed:
+1. Duplicate option declarations - The profile modules already had proper type validation via `lib.mkEnableOption`, so the duplicate declarations in the loader files were removed.
+2. Missing hostName parameter - The `hostName` parameter needed to be passed to home-manager modules via `extraSpecialArgs` in addition to NixOS modules.
 
 ---
 
@@ -104,20 +111,21 @@ All 7 high-priority "Quick Wins" optimizations from Phase 1 have been successful
 ### 7. ✅ Add Type Validation to Profiles (30 min)
 
 **Files Modified:**
-- Modified: `profiles/default.nix` - Added comprehensive options section with types
-- Modified: `profiles/user-default.nix` - Added comprehensive options section with types
+- Modified: `profiles/default.nix` - Added clarifying comments about type validation
+- Modified: `profiles/user-default.nix` - Added clarifying comments about type validation
 
 **Changes:**
-- All profile options now have proper `lib.types.bool` type checking
-- Added descriptive documentation for each profile
-- Wrapped configuration in `config` block
-- Default values explicitly set to `false`
+- Verified that all profile modules already use `lib.mkEnableOption` for type validation
+- Removed duplicate option declarations (was causing conflicts)
+- Added comments explaining where options are defined
+- Wrapped configuration in `config` block for proper structure
 
 **Impact:**
-- **Type safety** - Invalid configurations caught at evaluation time
+- **Type safety** - Invalid configurations caught at evaluation time via lib.mkEnableOption
 - **Better error messages** - Clear feedback when something is wrong
-- **Self-documenting** - Each option has description
+- **Self-documenting** - Each option has description via mkEnableOption
 - **More robust** - Prevents runtime failures
+- **No conflicts** - Removed duplicate declarations
 
 ---
 
