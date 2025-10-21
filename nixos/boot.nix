@@ -11,10 +11,10 @@ in
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = constants.boot.configurationLimit;
+        inherit (constants.boot) configurationLimit;
       };
       efi.canTouchEfiVariables = true;
-      timeout = constants.boot.timeout;
+      inherit (constants.boot) timeout;
     };
 
     # Alternative: GRUB bootloader (uncomment if preferred)

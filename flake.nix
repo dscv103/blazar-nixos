@@ -168,9 +168,9 @@
 
                   # Binary caches (speeds up builds significantly)
                   substituters = [
-                    "https://cache.nixos.org"           # Official NixOS cache
-                    "https://niri.cachix.org"           # Niri compositor cache
-                    "https://nix-community.cachix.org"  # Community packages cache
+                    "https://cache.nixos.org" # Official NixOS cache
+                    "https://niri.cachix.org" # Niri compositor cache
+                    "https://nix-community.cachix.org" # Community packages cache
                   ];
                   trusted-public-keys = [
                     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

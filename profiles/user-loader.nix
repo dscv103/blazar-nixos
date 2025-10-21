@@ -35,12 +35,12 @@
 let
   # Load profile configuration from host
   profileConfig = import ../hosts/${hostName}/profiles.nix;
-  
+
   # Get the current username from home-manager
-  username = config.home.username;
-  
+  inherit (config.home) username;
+
   # Get user-specific profile config, default to empty if not defined
-  userProfileConfig = profileConfig.users.${username} or {};
+  userProfileConfig = profileConfig.users.${username} or { };
 in
 {
   # ============================================================================
