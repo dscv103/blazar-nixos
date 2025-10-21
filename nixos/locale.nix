@@ -1,13 +1,16 @@
 # Locale, timezone, and console configuration
 
-_:
+{ ... }:
 
+let
+  constants = import ../shared/constants.nix;
+in
 {
   # Timezone
-  time.timeZone = "America/New_York";
+  time.timeZone = constants.system.timeZone;
 
   # Internationalization properties
-  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = constants.system.locale;
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_US.UTF-8";

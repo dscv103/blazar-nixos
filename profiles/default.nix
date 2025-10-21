@@ -61,30 +61,30 @@ in
   ];
 
   # ============================================================================
-  # CONFIGURATION VALIDATION
-  # ============================================================================
-
-  assertions = [
-    {
-      assertion = builtins.pathExists ../hosts/${hostName}/profiles.nix;
-      message = "Profile configuration file not found: hosts/${hostName}/profiles.nix";
-    }
-    {
-      assertion = profileConfig ? system;
-      message = "Profile configuration must define 'system' attribute in hosts/${hostName}/profiles.nix";
-    }
-    {
-      assertion = profileConfig ? features;
-      message = "Profile configuration must define 'features' attribute in hosts/${hostName}/profiles.nix";
-    }
-  ];
-
-  # ============================================================================
   # APPLY PROFILE CONFIGURATION
   # ============================================================================
   # Load configuration from host-specific profiles.nix and apply defaults
 
   config = {
+    # ============================================================================
+    # CONFIGURATION VALIDATION
+    # ============================================================================
+
+    assertions = [
+      {
+        assertion = builtins.pathExists ../hosts/${hostName}/profiles.nix;
+        message = "Profile configuration file not found: hosts/${hostName}/profiles.nix";
+      }
+      {
+        assertion = profileConfig ? system;
+        message = "Profile configuration must define 'system' attribute in hosts/${hostName}/profiles.nix";
+      }
+      {
+        assertion = profileConfig ? features;
+        message = "Profile configuration must define 'features' attribute in hosts/${hostName}/profiles.nix";
+      }
+    ];
+
     # System profiles
     profiles.system = {
       development.enable = lib.mkDefault profileConfig.system.development.enable;

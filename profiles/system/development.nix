@@ -141,10 +141,16 @@ in
     # ============================================================================
     boot.kernel.sysctl = {
       # Increase file watchers for development tools (IDEs, file watchers)
+      # Default is 8192, which is often insufficient for large projects
+      # 524288 = 512K watches, enough for most development scenarios
       "fs.inotify.max_user_watches" = 524288;
+
+      # Maximum number of inotify instances per user
+      # Default is 128, increased for multiple IDEs/tools running simultaneously
       "fs.inotify.max_user_instances" = 512;
 
-      # Increase file descriptors
+      # Maximum number of file descriptors system-wide
+      # Default is ~1M, increased for development servers and database connections
       "fs.file-max" = 2097152;
     };
 
