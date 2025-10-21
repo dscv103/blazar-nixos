@@ -75,6 +75,12 @@
     p7zip # 7z archive support
 
     # ========================================================================
+    # THEME AND APPEARANCE
+    # ========================================================================
+    dconf # GNOME configuration system (required for GTK theme settings)
+    gnome-themes-extra # Additional GNOME themes
+
+    # ========================================================================
     # NETWORK UTILITIES
     # ========================================================================
     networkmanagerapplet # NetworkManager GUI
