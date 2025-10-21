@@ -73,6 +73,7 @@ _:
 
     spawn-at-startup "waybar"
     spawn-at-startup "mako"
+    spawn-at-startup "swaybg" "-i" "~/Pictures/Wallpapers/wallpaper.jpg" "-m" "fill"
 
     environment {
         // XCURSOR_THEME "Adwaita"
@@ -158,5 +159,45 @@ _:
 
   # Create screenshots directory
   home.file."Pictures/Screenshots/.keep".text = "";
+
+  # Create wallpapers directory with README
+  home.file."Pictures/Wallpapers/.keep".text = "";
+  home.file."Pictures/Wallpapers/README.md".text = ''
+    # Wallpapers Directory
+
+    Place your wallpaper images in this directory.
+
+    ## Usage
+
+    The default wallpaper is set to `wallpaper.jpg` in the Niri configuration.
+
+    To change the wallpaper:
+    1. Add your wallpaper image to this directory
+    2. Either:
+       - Rename it to `wallpaper.jpg` (or create a symlink)
+       - Or edit `~/.config/niri/config.kdl` and update the swaybg spawn command
+
+    ## Swaybg Options
+
+    The current configuration uses:
+    - `-i ~/Pictures/Wallpapers/wallpaper.jpg` - Image path
+    - `-m fill` - Scaling mode (fill the screen)
+
+    Other scaling modes:
+    - `stretch` - Stretch to fill (may distort)
+    - `fit` - Fit to screen (may have borders)
+    - `center` - Center without scaling
+    - `tile` - Tile the image
+
+    ## Changing Wallpaper
+
+    To change wallpaper without restarting Niri:
+    ```bash
+    killall swaybg
+    swaybg -i ~/Pictures/Wallpapers/your-image.jpg -m fill &
+    ```
+
+    Or create a script to cycle through wallpapers!
+  '';
 }
 
