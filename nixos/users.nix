@@ -18,13 +18,27 @@
       "render" # GPU rendering
     ];
 
-    # Set initial password (change after first login!)
-    # Use 'mkpasswd -m sha-512' to generate a hashed password
-    # Or set password interactively with: passwd dscv
+    # ============================================================================
+    # PASSWORD CONFIGURATION
+    # ============================================================================
+    #
+    # SECURITY WARNING: initialPassword stores passwords in plain text in the
+    # Nix store, which is world-readable! This is a security risk.
+    #
+    # RECOMMENDED: Use hashedPassword instead:
+    #   1. Generate a hashed password: mkpasswd -m sha-512
+    #   2. Replace the line below with: hashedPassword = "your-hash-here";
+    #
+    # TEMPORARY: For initial setup only, using initialPassword
+    # TODO: Change to hashedPassword after first login
+    #
+    # To change password after setup:
+    #   sudo passwd dscv
+    #
     initialPassword = "changeme";
 
-    # Alternative: Use hashedPassword for better security
-    # hashedPassword = "...";
+    # Recommended secure alternative (uncomment and add your hash):
+    # hashedPassword = "$6$rounds=656000$...your-hash-here...";
 
     # User shell (default is bash, can be changed in home-manager)
     shell = pkgs.bash;

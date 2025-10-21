@@ -2,16 +2,19 @@
 
 { pkgs, ... }:
 
+let
+  constants = import ../shared/constants.nix;
+in
 {
   boot = {
     # Use systemd-boot EFI bootloader
     loader = {
       systemd-boot = {
         enable = true;
-        configurationLimit = 10; # Keep multiple generations for easy rollback
+        configurationLimit = constants.boot.configurationLimit;
       };
       efi.canTouchEfiVariables = true;
-      timeout = 5; # Bootloader timeout (seconds)
+      timeout = constants.boot.timeout;
     };
 
     # Alternative: GRUB bootloader (uncomment if preferred)

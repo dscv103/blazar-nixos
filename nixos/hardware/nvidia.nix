@@ -1,9 +1,28 @@
 # NVIDIA driver configuration with Wayland support
 # Optimized for NVIDIA GPUs with niri compositor
 
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  # ================================================================================
+  # CONFIGURATION VALIDATION
+  # ================================================================================
+
+  assertions = [
+    {
+      assertion = config.hardware.nvidia.modesetting.enable;
+      message = "NVIDIA modesetting MUST be enabled for Wayland support. Set hardware.nvidia.modesetting.enable = true;";
+    }
+    {
+      assertion = builtins.elem "nvidia-drm.modeset=1" config.boot.kernelParams;
+      message = "Kernel parameter 'nvidia-drm.modeset=1' is REQUIRED for NVIDIA Wayland support.";
+    }
+    {
+      assertion = config.hardware.graphics.enable;
+      message = "hardware.graphics.enable must be true for NVIDIA driver to function properly.";
+    }
+  ];
+
   # ================================================================================
   # NVIDIA DRIVER CONFIGURATION
   # ================================================================================

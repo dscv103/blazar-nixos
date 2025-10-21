@@ -5,6 +5,7 @@
 
 let
   cfg = config.profiles.system.multimedia;
+  constants = import ../../shared/constants.nix;
 in
 {
   options.profiles.system.multimedia = {
@@ -68,18 +69,9 @@ in
     # ============================================================================
     # VIDEO ACCELERATION
     # ============================================================================
-    # Enable hardware video acceleration
-    hardware.graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        # VA-API (Video Acceleration API)
-        vaapiVdpau
-        libvdpau-va-gl
-
-        # NVIDIA VA-API driver
-        nvidia-vaapi-driver
-      ];
-    };
+    # Note: Hardware video acceleration (hardware.graphics) is already configured
+    # in nixos/hardware/nvidia.nix with VA-API support. No additional configuration
+    # needed here.
 
     # ============================================================================
     # OBS STUDIO CONFIGURATION & PERFORMANCE OPTIMIZATIONS
@@ -100,8 +92,8 @@ in
       # Performance optimizations
       kernel.sysctl = {
         # Increase shared memory for audio/video processing
-        "kernel.shmmax" = 2147483648; # 2GB
-        "kernel.shmall" = 2147483648;
+        "kernel.shmmax" = constants.performance.shmmax;
+        "kernel.shmall" = constants.performance.shmall;
       };
     };
 
@@ -110,7 +102,7 @@ in
     # ============================================================================
     networking.firewall = {
       # RTMP streaming (OBS)
-      allowedTCPPorts = [ 1935 ];
+      allowedTCPPorts = [ constants.network.rtmpPort ];
     };
   };
 }

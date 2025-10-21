@@ -26,9 +26,28 @@
 #
 # ================================================================================
 
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
+  # ================================================================================
+  # CONFIGURATION VALIDATION
+  # ================================================================================
+
+  assertions = [
+    {
+      assertion = config.programs.niri.enable;
+      message = "Niri compositor must be enabled for this desktop configuration.";
+    }
+    {
+      assertion = config.xdg.portal.enable;
+      message = "XDG portals must be enabled for proper desktop integration (file pickers, screen sharing, etc.).";
+    }
+    {
+      assertion = config.programs.xwayland.enable;
+      message = "XWayland should be enabled for X11 application compatibility.";
+    }
+  ];
+
   # ================================================================================
   # NIRI COMPOSITOR
   # ================================================================================
