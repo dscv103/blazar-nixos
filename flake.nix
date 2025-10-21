@@ -101,6 +101,11 @@
               ./nixos/nix-settings.nix # Nix daemon, binary caches
 
               # ----------------------------------------------------------------
+              # Profile System - Modular feature toggles
+              # ----------------------------------------------------------------
+              ./profiles/default.nix # System and feature profiles
+
+              # ----------------------------------------------------------------
               # External Modules
               # ----------------------------------------------------------------
               niri-flake.nixosModules.niri
@@ -131,6 +136,7 @@
                       ./home/dscv/direnv.nix # Direnv configuration
                       ./home/dscv/git.nix # Git configuration
                       ./home/dscv/packages.nix # User packages
+                      ./profiles/user-default.nix # User profile system
                     ];
                   };
                 };
