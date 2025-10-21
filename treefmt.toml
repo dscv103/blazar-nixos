@@ -1,0 +1,77 @@
+# treefmt configuration
+# Universal code formatter configuration
+# Run with: treefmt
+
+# ============================================================================
+# GLOBAL SETTINGS
+# ============================================================================
+[global]
+# Exclude patterns (glob)
+excludes = [
+  "*.min.js",
+  "*.min.css",
+  "node_modules/**",
+  ".venv/**",
+  "__pycache__/**",
+  "*.pyc",
+  ".git/**",
+  "result",
+  "result-*",
+]
+
+# ============================================================================
+# PYTHON - Ruff (formatter, linter, import sorter)
+# ============================================================================
+[formatter.ruff]
+command = "ruff"
+options = ["format"]
+includes = ["*.py", "*.pyi"]
+
+[formatter.ruff-check]
+command = "ruff"
+options = ["check", "--fix"]
+includes = ["*.py", "*.pyi"]
+
+# ============================================================================
+# NIX - nixpkgs-fmt
+# ============================================================================
+[formatter.nix]
+command = "nixpkgs-fmt"
+includes = ["*.nix"]
+
+# ============================================================================
+# JAVASCRIPT/TYPESCRIPT - Prettier (via pnpm/bun)
+# ============================================================================
+# Uncomment if you have prettier installed in your project
+# [formatter.prettier]
+# command = "pnpm"
+# options = ["exec", "prettier", "--write"]
+# includes = [
+#   "*.js",
+#   "*.jsx",
+#   "*.ts",
+#   "*.tsx",
+#   "*.json",
+#   "*.yaml",
+#   "*.yml",
+#   "*.md",
+#   "*.css",
+#   "*.scss",
+#   "*.html",
+# ]
+
+# ============================================================================
+# MARKDOWN - mdformat (if installed)
+# ============================================================================
+# [formatter.markdown]
+# command = "mdformat"
+# includes = ["*.md"]
+
+# ============================================================================
+# TOML - taplo (if installed)
+# ============================================================================
+# [formatter.toml]
+# command = "taplo"
+# options = ["format"]
+# includes = ["*.toml"]
+

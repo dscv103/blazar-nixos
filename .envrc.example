@@ -1,0 +1,19 @@
+# Example .envrc file for direnv
+# Copy this to your project directory as `.envrc` and run `direnv allow`
+
+# Use the default devshell from flake.nix
+use flake
+
+# Alternative: Use a specific devshell
+# use flake .#nixos
+
+# You can also add project-specific environment variables here
+# export DATABASE_URL="postgresql://localhost/mydb"
+# export API_KEY="your-api-key-here"
+
+# Add local bin directory to PATH
+# PATH_add ./bin
+
+# Load .env file if it exists
+# dotenv_if_exists .env
+
