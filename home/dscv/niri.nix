@@ -82,8 +82,8 @@ _:
 
     binds {
         // Mod key is Super/Windows key
-        Mod+Return { spawn "foot"; }
-        Mod+D { spawn "fuzzel"; }
+        Mod+Return { spawn "ghostty"; }
+        Mod+D { spawn "rofi" "-show" "drun"; }
         Mod+Q { close-window; }
 
         // Screenshots
