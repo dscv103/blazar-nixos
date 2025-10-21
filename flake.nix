@@ -1,9 +1,9 @@
 {
   description = "NixOS configuration for blazar - flake-parts, niri, NVIDIA, AMD Ryzen 7 5800X";
 
-  # ============================================================================
+  # ================================================================================
   # INPUTS - External dependencies
-  # ============================================================================
+  # ================================================================================
   inputs = {
     # Main package repository
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -36,17 +36,17 @@
     systems.url = "github:nix-systems/default-linux";
   };
 
-  # ============================================================================
+  # ================================================================================
   # OUTPUTS - What this flake produces
-  # ============================================================================
+  # ================================================================================
   outputs = inputs @ { nixpkgs, flake-parts, home-manager, niri-flake, disko, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       # Systems this flake supports
       systems = [ "x86_64-linux" ];
 
-      # ========================================================================
+      # ============================================================================
       # FLAKE-PARTS MODULES - Import custom packages, overlays, and configs
-      # ========================================================================
+      # ============================================================================
       imports = [
         ./flake-parts/packages.nix
         ./flake-parts/overlays.nix
@@ -77,6 +77,7 @@
             # Special arguments passed to all modules
             specialArgs = {
               inherit inputs;
+              hostName = "blazar";  # Hostname for this configuration
             };
 
             modules = [
@@ -132,6 +133,7 @@
                   users.dscv = {
                     imports = [
                       ./home/dscv/home.nix # Base home-manager config
+                      ./home/dscv/fonts.nix # Centralized font configuration
                       ./home/dscv/theme.nix # Dracula theme configuration
                       ./home/dscv/ghostty.nix # Ghostty terminal emulator
                       ./home/dscv/vscode.nix # VSCode with Dracula theme and Maple Mono

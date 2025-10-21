@@ -3,14 +3,13 @@
 
 { pkgs
 , lib
+, hostName
 , ...
 }:
 
 let
   # Import host-specific variables
-  # Note: This assumes the hostname is "blazar"
-  # For multi-host setups, you would pass the host variable
-  inherit (import ../hosts/blazar/variables.nix) sddmTheme;
+  inherit (import ../hosts/${hostName}/variables.nix) sddmTheme;
 
   # Configure sddm-astronaut theme with theme-specific settings
   sddm-astronaut = pkgs.sddm-astronaut.override {
@@ -35,9 +34,9 @@ let
   };
 in
 {
-  # ============================================================================
+  # ================================================================================
   # SDDM DISPLAY MANAGER
-  # ============================================================================
+  # ================================================================================
   services.displayManager = {
     sddm = {
       enable = true;
@@ -71,15 +70,5 @@ in
       theme = "sddm-astronaut-theme";
     };
   };
-
-  # ============================================================================
-  # SYSTEM PACKAGES
-  # ============================================================================
-  environment.systemPackages = [
-    sddm-astronaut
-    pkgs.kdePackages.qtsvg
-    pkgs.kdePackages.qtmultimedia
-    pkgs.kdePackages.qtvirtualkeyboard
-  ];
 }
 

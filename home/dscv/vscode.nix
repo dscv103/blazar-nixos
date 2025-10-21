@@ -196,13 +196,5 @@
       };
     };
   };
-
-  # ============================================================================
-  # FONTS
-  # ============================================================================
-  # Ensure Maple Mono font is installed (already in ghostty.nix, but good to be explicit)
-  home.packages = with pkgs; [
-    maple-mono.NF # Maple Mono NerdFont
-  ];
 }
 
