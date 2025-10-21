@@ -8,7 +8,7 @@
     # ========================================================================
     # TERMINAL EMULATORS
     # ========================================================================
-    foot # Lightweight Wayland terminal (recommended for niri)
+    # Ghostty is configured via home-manager (see home/dscv/ghostty.nix)
     # alacritty   # GPU-accelerated terminal
     # kitty       # Feature-rich terminal
 
