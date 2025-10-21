@@ -10,49 +10,10 @@ let
 in
 {
   # ============================================================================
-  # OPTIONS - Define profile types
-  # ============================================================================
-
-  options.profiles.system = {
-    development = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = lib.mdDoc ''
-          Enable development profile with Docker, databases, and development tools.
-          Includes: Docker, PostgreSQL, Redis, development packages, and kernel parameters.
-        '';
-      };
-    };
-
-    multimedia = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = lib.mdDoc ''
-          Enable multimedia profile with OBS, video editing, and audio production tools.
-          Includes: OBS Studio, Kdenlive, Audacity, GIMP, and multimedia codecs.
-        '';
-      };
-    };
-  };
-
-  options.profiles.features = {
-    printing = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = lib.mdDoc ''
-          Enable printing and scanning support with CUPS.
-          Includes: CUPS printing service, Avahi for network printer discovery, and SANE for scanners.
-        '';
-      };
-    };
-  };
-
-  # ============================================================================
   # IMPORT ALL PROFILE MODULES
   # ============================================================================
+  # Note: Each profile module defines its own options with lib.mkEnableOption
+  # This ensures proper type validation and documentation
 
   imports = [
     # System profiles
@@ -66,6 +27,7 @@ in
   # ============================================================================
   # APPLY PROFILE CONFIGURATION
   # ============================================================================
+  # Load configuration from host-specific profiles.nix and apply defaults
 
   config = {
     # System profiles

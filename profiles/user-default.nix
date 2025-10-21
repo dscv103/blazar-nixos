@@ -16,25 +16,10 @@ let
 in
 {
   # ============================================================================
-  # OPTIONS - Define user profile types
-  # ============================================================================
-
-  options.profiles.user = {
-    productivity = {
-      enable = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = lib.mdDoc ''
-          Enable productivity profile with office and organization tools.
-          Includes: LibreOffice, Obsidian, KeePassXC, Syncthing, and productivity applications.
-        '';
-      };
-    };
-  };
-
-  # ============================================================================
   # IMPORT ALL USER PROFILE MODULES
   # ============================================================================
+  # Note: Each profile module defines its own options with lib.mkEnableOption
+  # This ensures proper type validation and documentation
 
   imports = [
     # User profiles
@@ -44,6 +29,7 @@ in
   # ============================================================================
   # APPLY USER PROFILE CONFIGURATION
   # ============================================================================
+  # Load configuration from host-specific profiles.nix and apply defaults
 
   config = {
     # User profiles
