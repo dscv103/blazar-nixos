@@ -19,26 +19,18 @@ Edit `hosts/blazar/profiles.nix` to enable or disable profiles:
 {
   # System profiles
   system = {
-    gaming.enable = true;        # Enable gaming profile
     development.enable = true;   # Enable development tools
     multimedia.enable = false;   # Disable multimedia profile
   };
 
   # User profiles (per-user)
   users.dscv = {
-    creative.enable = false;     # Disable creative tools
     productivity.enable = true;  # Enable productivity apps
   };
 }
 ```
 
 ### Available System Profiles
-
-#### `system/gaming.nix`
-Gaming-related packages and optimizations:
-- Steam, Lutris, GameMode
-- Performance optimizations
-- Gaming-specific kernel parameters
 
 #### `system/development.nix`
 Development tools and environments:
@@ -52,13 +44,13 @@ Multimedia creation and editing:
 - Kdenlive, Blender
 - Audio production tools
 
-#### `system/virtualization.nix`
+#### `system/virtualization.nix` (TODO)
 Virtualization and containers:
 - VirtualBox, QEMU/KVM
 - Virt-manager
 - Container runtimes
 
-#### `system/server.nix`
+#### `system/server.nix` (TODO)
 Server-related services:
 - Web servers (nginx, apache)
 - Database servers
@@ -66,25 +58,14 @@ Server-related services:
 
 ### Available User Profiles
 
-#### `user/creative.nix`
-Creative applications:
-- GIMP, Inkscape, Krita
-- Blender
-- DaVinci Resolve
-
 #### `user/productivity.nix`
 Productivity applications:
 - LibreOffice
-- Thunderbird
+- Obsidian, Joplin
+- KeePassXC, Syncthing
 - Note-taking apps
 
-#### `user/communication.nix`
-Communication tools:
-- Discord, Slack, Telegram
-- Zoom, Teams
-- Email clients
-
-#### `user/minimal.nix`
+#### `user/minimal.nix` (TODO)
 Minimal user environment:
 - Only essential tools
 - Lightweight alternatives
@@ -92,29 +73,23 @@ Minimal user environment:
 
 ### Available Feature Profiles
 
-#### `features/nvidia-gaming.nix`
-NVIDIA-specific gaming optimizations:
-- NVIDIA-specific settings
-- CUDA support
-- GPU acceleration
-
-#### `features/wayland-extras.nix`
-Additional Wayland tools:
-- Screen recording
-- Color pickers
-- Clipboard managers
-
 #### `features/printing.nix`
 Printing and scanning:
 - CUPS
 - Scanner support
 - Printer drivers
 
-#### `features/bluetooth.nix`
-Bluetooth support:
-- Bluez
-- Bluetooth audio
-- Device management
+#### `features/nvidia-gaming.nix` (TODO)
+NVIDIA-specific gaming optimizations:
+- NVIDIA-specific settings
+- CUDA support
+- GPU acceleration
+
+#### `features/wayland-extras.nix` (TODO)
+Additional Wayland tools:
+- Screen recording
+- Color pickers
+- Clipboard managers
 
 ## Creating Custom Profiles
 
@@ -179,15 +154,16 @@ You can enable multiple profiles simultaneously. They are designed to work toget
 ```nix
 {
   system = {
-    gaming.enable = true;
     development.enable = true;
     multimedia.enable = true;
   };
 
   users.dscv = {
-    creative.enable = true;
     productivity.enable = true;
-    communication.enable = true;
+  };
+
+  features = {
+    printing.enable = true;
   };
 }
 ```

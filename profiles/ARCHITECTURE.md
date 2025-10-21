@@ -14,20 +14,16 @@ profiles/
 ├── user-default.nix       # User profile loader
 │
 ├── system/                # System-level profiles (NixOS)
-│   ├── gaming.nix
 │   ├── development.nix
 │   ├── multimedia.nix
 │   ├── virtualization.nix (TODO)
 │   └── server.nix (TODO)
 │
 ├── user/                  # User-level profiles (Home-Manager)
-│   ├── creative.nix
 │   ├── productivity.nix
-│   ├── communication.nix
 │   └── minimal.nix (TODO)
 │
 └── features/              # Feature-specific profiles
-    ├── bluetooth.nix
     ├── printing.nix
     ├── nvidia-gaming.nix (TODO)
     └── wayland-extras.nix (TODO)
@@ -43,9 +39,9 @@ hosts/blazar/
 │ hosts/blazar/profiles.nix                                   │
 │ ┌─────────────────────────────────────────────────────────┐ │
 │ │ {                                                       │ │
-│ │   system.gaming.enable = true;                         │ │
-│ │   users.dscv.creative.enable = true;                   │ │
-│ │   features.bluetooth.enable = true;                    │ │
+│ │   system.development.enable = true;                    │ │
+│ │   users.dscv.productivity.enable = true;               │ │
+│ │   features.printing.enable = true;                     │ │
 │ │ }                                                       │ │
 │ └─────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
@@ -81,8 +77,8 @@ hosts/blazar/
         ┌───────┴───────┐       ┌───────┴───────┐
         ▼               ▼       ▼               ▼
 ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│ system/     │ │ features/   │ │ user/       │ │ user/       │
-│ gaming.nix  │ │ bluetooth   │ │ creative    │ │ productivity│
+│ system/     │ │ features/   │ │ user/       │ │             │
+│ development │ │ printing    │ │ productivity│ │             │
 └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘
 ```
 
@@ -95,12 +91,12 @@ Each profile follows this pattern:
 
 let
   # Reference to this profile's config
-  cfg = config.profiles.system.gaming;
+  cfg = config.profiles.system.development;
 in
 {
   # Define the option
-  options.profiles.system.gaming = {
-    enable = lib.mkEnableOption "gaming profile";
+  options.profiles.system.development = {
+    enable = lib.mkEnableOption "development profile";
   };
 
   # Apply configuration only if enabled
@@ -168,23 +164,19 @@ All profile options are under the `profiles` namespace:
 ```
 config.profiles
 ├── system
-│   ├── gaming.enable
 │   ├── development.enable
 │   ├── multimedia.enable
-│   ├── virtualization.enable
-│   └── server.enable
+│   ├── virtualization.enable (TODO)
+│   └── server.enable (TODO)
 │
 ├── user
-│   ├── creative.enable
 │   ├── productivity.enable
-│   ├── communication.enable
-│   └── minimal.enable
+│   └── minimal.enable (TODO)
 │
 └── features
-    ├── bluetooth.enable
     ├── printing.enable
-    ├── nvidia-gaming.enable
-    └── wayland-extras.enable
+    ├── nvidia-gaming.enable (TODO)
+    └── wayland-extras.enable (TODO)
 ```
 
 ## Adding a New Profile
@@ -217,14 +209,14 @@ Edit `profiles/default.nix`:
 ```nix
 {
   imports = [
-    ./system/gaming.nix
     ./system/development.nix
+    ./system/multimedia.nix
     ./system/myprofile.nix  # Add this
   ];
 
   profiles.system = {
-    gaming.enable = lib.mkDefault profileConfig.system.gaming.enable;
     development.enable = lib.mkDefault profileConfig.system.development.enable;
+    multimedia.enable = lib.mkDefault profileConfig.system.multimedia.enable;
     myprofile.enable = lib.mkDefault profileConfig.system.myprofile.enable;  # Add this
   };
 }
@@ -237,8 +229,8 @@ Edit `hosts/blazar/profiles.nix`:
 ```nix
 {
   system = {
-    gaming.enable = false;
     development.enable = false;
+    multimedia.enable = false;
     myprofile.enable = false;  # Add this
   };
 }

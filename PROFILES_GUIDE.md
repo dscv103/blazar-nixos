@@ -13,7 +13,7 @@ Edit `hosts/blazar/profiles.nix`:
 ```nix
 {
   system = {
-    gaming.enable = true;  # ← Change false to true
+    development.enable = true;  # ← Change false to true
   };
 }
 ```
@@ -24,53 +24,30 @@ Edit `hosts/blazar/profiles.nix`:
 sudo nixos-rebuild switch --flake .#blazar
 ```
 
-That's it! All gaming packages and optimizations are now installed.
+That's it! All development packages and tools are now installed.
 
 ## Available Profiles
 
 ### System Profiles (NixOS-level)
 
-| Profile | What It Includes | When to Enable |
-|---------|------------------|----------------|
-| **gaming** | Steam, Lutris, GameMode, performance tweaks | You want to play games |
-| **development** | Docker, databases, dev tools | You're a developer |
-| **multimedia** | OBS, video editing, audio production | You create videos/music |
-| **virtualization** | VirtualBox, QEMU/KVM, virt-manager | You need VMs |
-| **server** | Web servers, databases, monitoring | Running server services |
+| Profile         | What It Includes                     | When to Enable          |
+| --------------- | ------------------------------------ | ----------------------- |
+| **development** | Docker, databases, dev tools         | You're a developer      |
+| **multimedia**  | OBS, video editing, audio production | You create videos/music |
 
 ### User Profiles (Home-Manager level)
 
-| Profile | What It Includes | When to Enable |
-|---------|------------------|----------------|
-| **creative** | GIMP, Inkscape, Krita, Blender | You do graphic design/art |
+| Profile          | What It Includes                 | When to Enable        |
+| ---------------- | -------------------------------- | --------------------- |
 | **productivity** | LibreOffice, Obsidian, KeePassXC | You need office tools |
-| **communication** | Discord, Slack, Telegram, Zoom | You need chat/video apps |
-| **minimal** | Reduces packages to essentials | You want a lightweight system |
 
 ### Feature Profiles (Specific features)
 
-| Profile | What It Includes | When to Enable |
-|---------|------------------|----------------|
-| **bluetooth** | Bluez, bluetooth audio | You use bluetooth devices |
+| Profile      | What It Includes                | When to Enable             |
+| ------------ | ------------------------------- | -------------------------- |
 | **printing** | CUPS, printer drivers, scanners | You have a printer/scanner |
-| **nvidia-gaming** | NVIDIA gaming optimizations, CUDA | You have NVIDIA GPU for gaming |
-| **wayland-extras** | Screen recording, color pickers | You want extra Wayland tools |
 
 ## Common Use Cases
-
-### Gaming Setup
-
-```nix
-{
-  system = {
-    gaming.enable = true;
-  };
-  
-  features = {
-    nvidia-gaming.enable = true;  # If you have NVIDIA GPU
-  };
-}
-```
 
 ### Developer Workstation
 
@@ -82,7 +59,6 @@ That's it! All gaming packages and optimizations are now installed.
   
   users.dscv = {
     productivity.enable = true;
-    communication.enable = true;
   };
 }
 ```
@@ -94,24 +70,9 @@ That's it! All gaming packages and optimizations are now installed.
   system = {
     multimedia.enable = true;
   };
-  
+
   users.dscv = {
-    creative.enable = true;
     productivity.enable = true;
-  };
-}
-```
-
-### Minimal System
-
-```nix
-{
-  system = {
-    # All disabled
-  };
-  
-  users.dscv = {
-    minimal.enable = true;
   };
 }
 ```
@@ -121,41 +82,21 @@ That's it! All gaming packages and optimizations are now installed.
 ```nix
 {
   system = {
-    gaming.enable = true;
     development.enable = true;
     multimedia.enable = true;
   };
-  
+
   users.dscv = {
-    creative.enable = true;
     productivity.enable = true;
-    communication.enable = true;
   };
-  
+
   features = {
-    bluetooth.enable = true;
     printing.enable = true;
   };
 }
 ```
 
 ## Profile Details
-
-### Gaming Profile
-
-**Packages:**
-- Steam (with Proton GE)
-- Lutris
-- Heroic (Epic/GOG launcher)
-- GameMode (performance optimization)
-- Gamescope (SteamOS compositor)
-- MangoHud (FPS/temp overlay)
-
-**Optimizations:**
-- 32-bit graphics support
-- Performance kernel parameters
-- Increased file watchers
-- Game streaming ports (Sunshine)
 
 ### Development Profile
 
@@ -191,16 +132,6 @@ That's it! All gaming packages and optimizations are now installed.
 - JACK audio support
 - RTMP streaming ports
 
-### Creative Profile (User)
-
-**Packages:**
-- GIMP (image editing)
-- Inkscape (vector graphics)
-- Krita (digital painting)
-- Darktable (photo workflow)
-- Font Manager
-- Flameshot (screenshots)
-
 ### Productivity Profile (User)
 
 **Packages:**
@@ -213,17 +144,6 @@ That's it! All gaming packages and optimizations are now installed.
 
 **Services:**
 - Syncthing daemon
-
-### Communication Profile (User)
-
-**Packages:**
-- Discord
-- Slack
-- Telegram
-- Signal
-- Element (Matrix)
-- Zoom
-- Thunderbird (email)
 
 ## Creating Custom Profiles
 
@@ -338,14 +258,11 @@ Profiles are designed not to conflict, but if you encounter issues:
 
 ## Performance Impact
 
-| Profile | Disk Space | Build Time | RAM Usage |
-|---------|------------|------------|-----------|
-| gaming | ~15 GB | +5 min | +2 GB |
-| development | ~5 GB | +3 min | +1 GB |
-| multimedia | ~8 GB | +4 min | +1.5 GB |
-| creative | ~3 GB | +2 min | +500 MB |
-| productivity | ~2 GB | +2 min | +500 MB |
-| communication | ~1 GB | +1 min | +300 MB |
+| Profile      | Disk Space | Build Time | RAM Usage |
+| ------------ | ---------- | ---------- | --------- |
+| development  | ~5 GB      | +3 min     | +1 GB     |
+| multimedia   | ~8 GB      | +4 min     | +1.5 GB   |
+| productivity | ~2 GB      | +2 min     | +500 MB   |
 
 *Estimates vary based on dependencies and cache*
 
