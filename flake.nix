@@ -127,7 +127,10 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  extraSpecialArgs = { inherit inputs; };
+                  extraSpecialArgs = {
+                    inherit inputs;
+                    hostName = "blazar";  # Pass hostname to home-manager modules
+                  };
 
                   # User configurations with flat imports
                   users.dscv = {
