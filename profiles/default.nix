@@ -1,6 +1,39 @@
-# Profile system loader
-# This module loads all profile definitions and applies the configuration
-# from the host-specific profiles.nix file
+# ================================================================================
+# PROFILE SYSTEM LOADER
+# ================================================================================
+#
+# PURPOSE:
+#   Central loader for the profile system that enables/disables feature sets
+#   Loads configuration from host-specific profiles.nix and applies defaults
+#
+# DEPENDENCIES:
+#   - hostName (passed via specialArgs)
+#   - hosts/${hostName}/profiles.nix (profile configuration)
+#   - Profile modules in system/, user/, features/ subdirectories
+#
+# USED BY:
+#   - Main system configuration (flake.nix)
+#
+# CONFIGURATION:
+#   Profiles are defined in hosts/${hostName}/profiles.nix with structure:
+#   {
+#     system = { development.enable = true; multimedia.enable = false; };
+#     features = { printing.enable = true; };
+#     users.${username} = { productivity.enable = true; };
+#   }
+#
+# PROFILE CATEGORIES:
+#   - system/    - System-level profiles (development, multimedia)
+#   - user/      - User-level profiles (productivity)
+#   - features/  - Optional features (printing, virtualization)
+#
+# RELATED FILES:
+#   - hosts/${hostName}/profiles.nix (profile configuration)
+#   - profiles/system/default.nix (system profile imports)
+#   - profiles/user/default.nix (user profile imports)
+#   - profiles/features/default.nix (feature profile imports)
+#
+# ================================================================================
 
 { lib, hostName, ... }:
 

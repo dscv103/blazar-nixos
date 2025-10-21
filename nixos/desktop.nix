@@ -1,5 +1,30 @@
-# Desktop environment configuration
-# Niri compositor with XDG portals and display manager
+# ================================================================================
+# DESKTOP ENVIRONMENT CONFIGURATION
+# ================================================================================
+#
+# PURPOSE:
+#   Configures the Niri Wayland compositor with XDG portals for desktop integration
+#   Provides D-Bus, XWayland, and portal services for a complete desktop experience
+#
+# DEPENDENCIES:
+#   - niri-flake (Niri compositor)
+#   - XDG desktop portal packages
+#   - D-Bus service
+#
+# USED BY:
+#   - Main system configuration (flake.nix)
+#
+# CONFIGURATION:
+#   - Niri compositor enabled
+#   - XDG portals for file picker, screenshot, screencast
+#   - XWayland for X11 app compatibility
+#   - D-Bus for inter-process communication
+#
+# RELATED FILES:
+#   - home/dscv/niri.nix (user-level Niri configuration)
+#   - nixos/sddm.nix (display manager)
+#
+# ================================================================================
 
 { pkgs, ... }:
 
