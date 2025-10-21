@@ -23,9 +23,8 @@ _:
     # PulseAudio compatibility layer
     pulse.enable = true;
 
-    # JACK compatibility (optional, for professional audio)
-    # Uncomment if you need JACK support
-    # jack.enable = true;
+    # JACK compatibility (for professional audio interfaces like Focusrite Scarlett)
+    jack.enable = true;
   };
 
   # Disable PulseAudio in favor of PipeWire

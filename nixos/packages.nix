@@ -83,6 +83,8 @@
     # AUDIO UTILITIES
     # ========================================================================
     pavucontrol # PulseAudio/PipeWire volume control
+    alsa-scarlett-gui # GUI for Focusrite Scarlett Gen 2/3/4 mixer controls
+    scarlett2 # Firmware management for Focusrite Scarlett interfaces
 
     # ========================================================================
     # DEVELOPMENT TOOLS
