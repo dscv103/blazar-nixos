@@ -1,7 +1,7 @@
 # Niri user configuration
 # Keybindings, workspaces, window rules, and appearance
 
-{ ... }:
+_:
 
 {
   # Niri configuration using the niri-flake home-manager module

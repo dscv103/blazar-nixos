@@ -1,6 +1,6 @@
 # Locale, timezone, and console configuration
 
-{ ... }:
+_:
 
 {
   # Timezone

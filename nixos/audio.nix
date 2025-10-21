@@ -1,7 +1,7 @@
 # PipeWire audio configuration
 # Modern audio server with PulseAudio and JACK compatibility
 
-{ ... }:
+_:
 
 {
   # Enable RealtimeKit for low-latency audio

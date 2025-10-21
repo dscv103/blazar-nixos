@@ -1,6 +1,6 @@
 # Network configuration
 
-{ ... }:
+_:
 
 {
   networking = {
