@@ -89,11 +89,16 @@
     # ========================================================================
     # DEVELOPMENT TOOLS
     # ========================================================================
+    # Nix tools
     nixpkgs-fmt # Nix code formatter
     nixfmt-rfc-style # RFC 166 nixfmt formatter variant
     nil # Nix language server
     deadnix # Detect dead Nix code
     statix # Lints and suggestions for Nix code
+
+    # Version control and build tools
+    sapling # Scalable, user-friendly source control system (Meta's Sapling SCM)
+    graphite-cli # CLI for creating stacked git changes (gt command)
   ];
 }
 
