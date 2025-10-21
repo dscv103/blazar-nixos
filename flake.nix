@@ -116,6 +116,7 @@
                       ./home/dscv/hyprpanel.nix # HyprPanel configuration
                       ./home/dscv/niri.nix # Niri user configuration
                       ./home/dscv/shell.nix # Shell configuration
+                      ./home/dscv/starship.nix # Starship prompt configuration
                       ./home/dscv/git.nix # Git configuration
                       ./home/dscv/packages.nix # User packages
                     ];
