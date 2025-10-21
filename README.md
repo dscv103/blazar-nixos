@@ -17,7 +17,9 @@ A modern, modular NixOS configuration featuring:
 
 ### Quick Links
 
-- **[Documentation Index](docs/README.md)** - Start here! Complete documentation overview
+- **[Installation Guide](docs/INSTALLATION.md)** - Complete installation guide for bare metal
+- **[Installation Quick Reference](docs/INSTALL_QUICK_REFERENCE.md)** - Fast installation reference
+- **[Documentation Index](docs/README.md)** - Complete documentation overview
 - **[Quick Reference](docs/QUICK_REFERENCE.md)** - Essential commands and common tasks
 - **[Configuration Guide](docs/CONFIG_README.md)** - Detailed configuration walkthrough
 - **[Profiles Guide](docs/PROFILES_GUIDE.md)** - Understanding the profile system
@@ -27,13 +29,17 @@ A modern, modular NixOS configuration featuring:
 
 ## 🎯 Quick Start
 
-### Prerequisites
-- NixOS installation media or existing NixOS system
-- AMD Ryzen 7 5800X CPU (or similar)
-- NVIDIA GPU
-- Basic familiarity with NixOS and Nix flakes
+### New Installation (Bare Metal)
 
-### Clone and Build
+Install NixOS from a live ISO with one command:
+
+```bash
+curl -L https://raw.githubusercontent.com/dscv103/blazar-nixos/master/install.sh | sudo bash
+```
+
+**See:** [Installation Guide](docs/INSTALLATION.md) | [Quick Reference](docs/INSTALL_QUICK_REFERENCE.md)
+
+### Existing NixOS System
 
 ```bash
 # Clone the repository
@@ -46,6 +52,12 @@ sudo nixos-rebuild dry-build --flake .#blazar
 # Build and switch
 sudo nixos-rebuild switch --flake .#blazar
 ```
+
+### Prerequisites
+- NixOS 24.11 or later
+- AMD Ryzen 7 5800X CPU (or similar)
+- NVIDIA GPU (or adapt for AMD/Intel)
+- Basic familiarity with NixOS and Nix flakes
 
 ### For New Hosts
 

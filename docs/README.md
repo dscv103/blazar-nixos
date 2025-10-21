@@ -8,6 +8,8 @@ Welcome to the documentation for this NixOS configuration! This directory contai
 
 ### Getting Started
 
+- **[Installation Guide](INSTALLATION.md)** - Complete guide for installing on bare metal
+- **[Installation Quick Reference](INSTALL_QUICK_REFERENCE.md)** - Fast installation reference
 - **[Quick Reference](QUICK_REFERENCE.md)** - Quick commands and common tasks
 - **[Configuration Guide](CONFIG_README.md)** - Detailed configuration walkthrough
 - **[Disko Setup](DISKO_SETUP.md)** - Disk partitioning and encryption setup
