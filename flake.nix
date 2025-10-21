@@ -122,6 +122,7 @@
                       ./home/dscv/theme.nix # Dracula theme configuration
                       ./home/dscv/ghostty.nix # Ghostty terminal emulator
                       ./home/dscv/vscode.nix # VSCode with Dracula theme and Maple Mono
+                      ./home/dscv/zed.nix # Zed IDE with Dracula theme and Maple Mono
                       ./home/dscv/hyprpanel.nix # HyprPanel configuration
                       ./home/dscv/niri.nix # Niri user configuration
                       ./home/dscv/shell.nix # Shell configuration
