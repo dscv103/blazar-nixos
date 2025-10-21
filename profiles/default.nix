@@ -53,11 +53,11 @@ in
     # System profiles (development, multimedia, etc.)
     ./system
 
-    # User profiles (productivity, etc.)
-    ./user
-
     # Feature profiles (printing, virtualization, etc.)
     ./features
+
+    # NOTE: User profiles are imported in home-manager configuration
+    # See profiles/user-loader.nix for home-manager user profile imports
   ];
 
   # ============================================================================

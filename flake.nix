@@ -134,6 +134,10 @@
                   # User configurations with flat imports
                   users.dscv = {
                     imports = [
+                      # User profile system (home-manager level)
+                      ./profiles/user-loader.nix # User profile loader
+
+                      # User configuration modules
                       ./home/dscv/home.nix # Base home-manager config
                       ./home/dscv/fonts.nix # Centralized font configuration
                       ./home/dscv/theme.nix # Dracula theme configuration
