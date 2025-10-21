@@ -2,7 +2,7 @@
 # Imports hardware-specific modules based on the hostname
 # This allows easy support for multiple machines with different hardware
 
-{ hostName, ... }:
+_:
 
 {
   imports = [

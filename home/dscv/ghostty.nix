@@ -1,7 +1,7 @@
 # Ghostty terminal emulator configuration
 # Fast, native, feature-rich terminal with Dracula theme and Maple Mono font
 
-{ pkgs, ... }:
+_:
 
 {
   # ================================================================================

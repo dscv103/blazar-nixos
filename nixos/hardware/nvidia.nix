@@ -1,7 +1,7 @@
 # NVIDIA driver configuration with Wayland support
 # Optimized for NVIDIA GPUs with niri compositor
 
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   # ================================================================================
