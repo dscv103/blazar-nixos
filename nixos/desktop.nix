@@ -1,7 +1,7 @@
 # Desktop environment configuration
 # Niri compositor with XDG portals and display manager
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # ============================================================================

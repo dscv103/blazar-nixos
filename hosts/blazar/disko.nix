@@ -13,7 +13,7 @@
 # - Optimized mount options for NVMe SSDs
 # - Single password prompt for both swap and root
 
-{ config, ... }:
+_:
 {
   disko.devices = {
     disk = {

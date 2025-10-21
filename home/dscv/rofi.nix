@@ -1,7 +1,7 @@
 # Rofi application launcher configuration
 # Dracula theme with Maple Mono font
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.rofi = {

@@ -161,61 +161,61 @@ _:
     "Pictures/Screenshots/.keep".text = "";
     "Pictures/Wallpapers/.keep".text = "";
     "Pictures/Wallpapers/README.md".text = ''
-    # Wallpapers Directory
+      # Wallpapers Directory
 
-    Place your wallpaper images in this directory.
+      Place your wallpaper images in this directory.
 
-    ## Supported Formats
+      ## Supported Formats
 
-    Hyprpaper supports:
-    - PNG
-    - JPEG/JPG
-    - WebP (including animated WebP)
-    - JPEG XL (JXL)
+      Hyprpaper supports:
+      - PNG
+      - JPEG/JPG
+      - WebP (including animated WebP)
+      - JPEG XL (JXL)
 
-    ## Usage
+      ## Usage
 
-    The default wallpaper is configured in `~/.config/hypr/hyprpaper.conf`.
+      The default wallpaper is configured in `~/.config/hypr/hyprpaper.conf`.
 
-    ### Setting a Wallpaper
+      ### Setting a Wallpaper
 
-    1. Add your wallpaper image to this directory
-    2. Edit `~/.config/hypr/hyprpaper.conf`:
-       ```
-       preload = ~/Pictures/Wallpapers/your-image.webp
-       wallpaper = ,~/Pictures/Wallpapers/your-image.webp
-       ```
-    3. Reload hyprpaper: `killall hyprpaper && hyprpaper &`
+      1. Add your wallpaper image to this directory
+      2. Edit `~/.config/hypr/hyprpaper.conf`:
+         ```
+         preload = ~/Pictures/Wallpapers/your-image.webp
+         wallpaper = ,~/Pictures/Wallpapers/your-image.webp
+         ```
+      3. Reload hyprpaper: `killall hyprpaper && hyprpaper &`
 
-    ### Using Multiple Wallpapers (Multi-Monitor)
+      ### Using Multiple Wallpapers (Multi-Monitor)
 
-    ```
-    preload = ~/Pictures/Wallpapers/monitor1.webp
-    preload = ~/Pictures/Wallpapers/monitor2.webp
-    wallpaper = DP-1,~/Pictures/Wallpapers/monitor1.webp
-    wallpaper = HDMI-A-1,~/Pictures/Wallpapers/monitor2.webp
-    ```
+      ```
+      preload = ~/Pictures/Wallpapers/monitor1.webp
+      preload = ~/Pictures/Wallpapers/monitor2.webp
+      wallpaper = DP-1,~/Pictures/Wallpapers/monitor1.webp
+      wallpaper = HDMI-A-1,~/Pictures/Wallpapers/monitor2.webp
+      ```
 
-    Use `niri msg outputs` to see your monitor names.
+      Use `niri msg outputs` to see your monitor names.
 
-    ### Dynamic Wallpaper Changes
+      ### Dynamic Wallpaper Changes
 
-    Use hyprctl to change wallpapers on the fly:
-    ```bash
-    hyprctl hyprpaper preload ~/Pictures/Wallpapers/new-image.webp
-    hyprctl hyprpaper wallpaper ",~/Pictures/Wallpapers/new-image.webp"
-    ```
+      Use hyprctl to change wallpapers on the fly:
+      ```bash
+      hyprctl hyprpaper preload ~/Pictures/Wallpapers/new-image.webp
+      hyprctl hyprpaper wallpaper ",~/Pictures/Wallpapers/new-image.webp"
+      ```
 
-    ### Configuration Options
+      ### Configuration Options
 
-    - `splash = false` - Disable the hyprpaper splash text
-    - `ipc = on` - Enable IPC for dynamic control (default: on)
+      - `splash = false` - Disable the hyprpaper splash text
+      - `ipc = on` - Enable IPC for dynamic control (default: on)
 
-    ## Example Wallpaper Sources
+      ## Example Wallpaper Sources
 
-    - https://unsplash.com (free high-quality photos)
-    - https://wallhaven.cc (community wallpapers)
-    - https://www.pexels.com (free stock photos)
+      - https://unsplash.com (free high-quality photos)
+      - https://wallhaven.cc (community wallpapers)
+      - https://www.pexels.com (free stock photos)
     '';
   };
 

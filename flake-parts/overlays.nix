@@ -1,10 +1,10 @@
 # Nixpkgs overlays
 # Define overlays to modify or add packages to nixpkgs
 
-{ inputs, ... }:
+_:
 
 {
-  perSystem = { config, self', inputs', pkgs, system, lib, ... }: {
+  perSystem = _: {
     # Per-system overlays can be defined here
     # overlayAttrs = {
     #   # Attributes to add to pkgs

@@ -1,7 +1,7 @@
 # User packages
 # Applications and tools installed for the user
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [

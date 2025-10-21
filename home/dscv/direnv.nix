@@ -1,7 +1,7 @@
 # Direnv configuration
 # Automatic environment switching for project directories
 
-{ pkgs, ... }:
+_:
 
 {
   # ============================================================================

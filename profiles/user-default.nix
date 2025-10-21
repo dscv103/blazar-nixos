@@ -2,7 +2,7 @@
 # This module loads all user profile definitions for home-manager
 # Configuration is loaded from hosts/blazar/profiles.nix
 
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 
 let
   # Load profile configuration from host

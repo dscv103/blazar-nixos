@@ -2,7 +2,7 @@
 # This module loads all profile definitions and applies the configuration
 # from hosts/blazar/profiles.nix
 
-{ config, lib, pkgs, ... }:
+{ lib, ... }:
 
 let
   # Load profile configuration from host

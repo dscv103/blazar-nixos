@@ -39,7 +39,7 @@
   # ============================================================================
   # OUTPUTS - What this flake produces
   # ============================================================================
-  outputs = inputs @ { self, nixpkgs, flake-parts, home-manager, niri-flake, disko, ... }:
+  outputs = inputs @ { nixpkgs, flake-parts, home-manager, niri-flake, disko, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       # Systems this flake supports
       systems = [ "x86_64-linux" ];
@@ -54,7 +54,7 @@
       ];
 
       # Per-system outputs
-      perSystem = { config, self', inputs', pkgs, system, ... }: {
+      perSystem = { pkgs, system, ... }: {
         # Configure nixpkgs for this system
         _module.args.pkgs = import nixpkgs {
           inherit system;

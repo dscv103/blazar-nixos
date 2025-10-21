@@ -2,10 +2,10 @@
 # Define custom packages here that will be available as flake outputs
 # Access with: nix build .#<package-name>
 
-{ inputs, ... }:
+_:
 
 {
-  perSystem = { config, self', inputs', pkgs, system, lib, ... }: {
+  perSystem = _: {
     packages = {
       # Example custom package
       # my-custom-package = pkgs.stdenv.mkDerivation {

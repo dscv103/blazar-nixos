@@ -2,10 +2,10 @@
 # Define development environments for different projects
 # Access with: nix develop or nix develop .#<shell-name>
 
-{ inputs, ... }:
+_:
 
 {
-  perSystem = { config, self', inputs', pkgs, system, lib, ... }: {
+  perSystem = { pkgs, ... }: {
     devShells = {
       # ======================================================================
       # DEFAULT SHELL - Full-stack development environment

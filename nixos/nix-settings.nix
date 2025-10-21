@@ -1,7 +1,7 @@
 # Nix daemon settings and configuration
 # Note: Binary caches are configured in flake.nix
 
-{ config, ... }:
+_:
 
 {
   # Nix settings
