@@ -12,32 +12,28 @@ in
   # ============================================================================
   # IMPORT ALL PROFILE MODULES
   # ============================================================================
-  
+
   imports = [
     # System profiles
-    ./system/gaming.nix
     ./system/development.nix
     ./system/multimedia.nix
-    
+
     # Feature profiles
-    ./features/bluetooth.nix
     ./features/printing.nix
   ];
 
   # ============================================================================
   # APPLY PROFILE CONFIGURATION
   # ============================================================================
-  
+
   # System profiles
   profiles.system = {
-    gaming.enable = lib.mkDefault profileConfig.system.gaming.enable;
     development.enable = lib.mkDefault profileConfig.system.development.enable;
     multimedia.enable = lib.mkDefault profileConfig.system.multimedia.enable;
   };
 
   # Feature profiles
   profiles.features = {
-    bluetooth.enable = lib.mkDefault profileConfig.features.bluetooth.enable;
     printing.enable = lib.mkDefault profileConfig.features.printing.enable;
   };
 }

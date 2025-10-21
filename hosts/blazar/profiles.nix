@@ -8,9 +8,6 @@
   # System-level configurations that affect the entire NixOS system
 
   system = {
-    # Gaming profile - Steam, Lutris, GameMode, performance optimizations
-    gaming.enable = false;
-
     # Development profile - Docker, databases, additional dev tools
     development.enable = false;
 
@@ -30,14 +27,8 @@
   # User-level configurations managed by home-manager
 
   users.dscv = {
-    # Creative profile - GIMP, Inkscape, Krita, Blender
-    creative.enable = false;
-
     # Productivity profile - LibreOffice, Thunderbird, note-taking
     productivity.enable = false;
-
-    # Communication profile - Discord, Slack, Telegram, Zoom
-    communication.enable = false;
 
     # Minimal profile - Reduce packages to essentials only
     minimal.enable = false;
@@ -57,9 +48,6 @@
 
     # Printing and scanning support
     printing.enable = false;
-
-    # Bluetooth support
-    bluetooth.enable = false;
   };
 }
 
