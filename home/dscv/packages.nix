@@ -67,6 +67,8 @@
   # PROGRAM CONFIGURATIONS
   # ============================================================================
 
+  nixpkgs.config.allowUnfree = true;
+ 
   # Firefox with Wayland support
   programs.firefox = {
     enable = true;
