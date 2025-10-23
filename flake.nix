@@ -119,6 +119,10 @@
               niri-flake.nixosModules.niri
               home-manager.nixosModules.home-manager
 
+              ({ config, lib, pkgs, ... }: {
+                nixpkgs.config.allowUnfree = true;
+              })
+
               # ----------------------------------------------------------------
               # Home Manager Configuration (flat imports for user modules)
               # ----------------------------------------------------------------
