@@ -62,7 +62,7 @@
         };
 
         # Formatter for nix files (run with: nix fmt)
-        # formatter = pkgs.nixpkgs-fmt;
+          formatter = pkgs.nixpkgs-fmt;
       };
 
       # Flake-level outputs
@@ -118,10 +118,6 @@
               disko.nixosModules.disko # Disko declarative disk partitioning
               niri-flake.nixosModules.niri
               home-manager.nixosModules.home-manager
-
-              ({ config, lib, pkgs, ... }: {
-                nixpkgs.config.allowUnfree = true;
-              })
 
               # ----------------------------------------------------------------
               # Home Manager Configuration (flat imports for user modules)
