@@ -120,9 +120,6 @@ _:
                     "--metadata_replicas=1" # Single device, no need for replication
                     "--data_replicas=1"
 
-                    # Journal size (larger journal for better performance)
-                    "--journal_size=512M"
-
                     # Filesystem label
                     "--fs_label=nixos"
                   ];
