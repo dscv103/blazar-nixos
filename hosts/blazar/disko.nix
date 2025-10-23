@@ -112,9 +112,9 @@ _:
                     "--discard" # Enable TRIM support
 
                     # Performance optimizations
-                    "--foreground_target=ssd"
-                    "--background_target=ssd"
-                    "--promote_target=ssd"
+                    "--foreground_target=/dev/mapper/cryptroot"
+                    "--background_target=/dev/mapper/cryptroot"
+                    "--promote_target=/dev/mapper/cryptroot"
 
                     # Metadata options for better performance
                     "--metadata_replicas=1" # Single device, no need for replication
