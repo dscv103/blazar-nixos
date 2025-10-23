@@ -62,7 +62,7 @@
         };
 
         # Formatter for nix files (run with: nix fmt)
-        formatter = pkgs.nixpkgs-fmt;
+        # formatter = pkgs.nixpkgs-fmt;
       };
 
       # Flake-level outputs
