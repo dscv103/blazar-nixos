@@ -1,0 +1,27 @@
+name: NixOS Build Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  nix-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+
+      - name: Build with Nix
+        run: nix build
+
+      - name: Check result
+        run: |
+          if [ ! -d result ]; then
+            echo "Nix build did not produce a result directory."
+            exit 1
+          fi
