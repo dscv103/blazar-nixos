@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
 
       - name: Install Nix
-        uses: DeterminateSystems/determinate-nix-action@v3.11.3
+        uses: DeterminateSystems/determinate-nix-action@v3.13.0
       # Optional but recommended: enable binary caches for faster CI
       - name: Enable Nix cache
         uses: DeterminateSystems/magic-nix-cache-action@v13
